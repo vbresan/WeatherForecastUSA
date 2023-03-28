@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        applicationId "biz.binarysolutions.weatherusa"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 23
+        versionName "3.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+}

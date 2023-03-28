@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Error">Error</string>
+    <string name="ErrorConnecting">It looks like you are not connected to internet. Would you like to go to Wireless controls and enable the connection?</string>
+</resources>

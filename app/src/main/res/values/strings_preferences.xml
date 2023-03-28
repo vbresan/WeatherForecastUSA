@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="LocationUpdates">Location Updates</string>
+    <string name="ForecastUpdates">Forecast Updates</string>
+    
+    <string name="AutomaticRefresh">Automatic refresh</string>
+    <string name="RefreshOnApplicationResume">Refresh on application resume</string>
+    
+    <string name="preferences_locationUpdates_key">locationUpdates</string>
+    <string name="preferences_forecastUpdates_key">forecastUpdates</string>
+    
+    <string name="preferences_locationUpdates_default_value">true</string>
+    <string name="preferences_forecastUpdates_default_value">true</string>
+</resources>
