@@ -17,8 +17,8 @@ public class LocationHandler {
 	private static final long  MIN_TIME     = 600000;	// 10 minutes
 	private static final float MIN_DISTANCE = 1000;		// 1000 meters
 
-	private LocationManager         locationManager;
-	private LocationHandlerListener locationHandlerListener;
+	private final LocationManager         locationManager;
+	private final LocationHandlerListener locationHandlerListener;
 	
 	private String provider = null;
 	
@@ -96,7 +96,6 @@ public class LocationHandler {
 		} else {
 			locationHandlerListener.onLocationChanged(null);
 		}
-		
 	}
 
 	/**

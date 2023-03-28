@@ -60,6 +60,10 @@ public class LocationGetter {
 	 * @return
 	 */
 	public static Location getLastKnownLocation(LocationManager lm) {
+
+		if (LOCATION != null) {
+			return LOCATION;
+		}
 		
 		Location location = getLastKnownGPSLocation(lm);
 		if (location != null) {
@@ -67,11 +71,7 @@ public class LocationGetter {
 		}
 		
 		location = getLastKnownNetworkLocation(lm);
-		if (location != null) {
-			return location;
-		}
-		
-		return LOCATION;
+		return location;
 	}
 
 	/**

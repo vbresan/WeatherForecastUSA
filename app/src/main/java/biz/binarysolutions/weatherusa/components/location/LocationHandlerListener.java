@@ -8,6 +8,6 @@ import android.location.Location;
  */
 public interface LocationHandlerListener {
 
-	public void onLocationChanged(Location location);
-	public void onConnectionError();
+	void onLocationChanged(Location location);
+	void onConnectionError();
 }

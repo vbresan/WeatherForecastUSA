@@ -207,23 +207,14 @@ public class MainActivity
 	private void setButtonListeners() {
 		
 		Button button = (Button) findViewById(R.id.ButtonRefreshForecast);
-		button.setOnClickListener(new OnClickListener() {
-	
-			@Override
-			public void onClick(View view) {
-				refreshForecast();
-			}
-		});
-		
-		
+		if (button != null) {
+			button.setOnClickListener(v -> refreshForecast());
+		}
+
 		button = (Button) findViewById(R.id.ButtonRefreshLocation);
-		button.setOnClickListener(new OnClickListener() {
-	
-			@Override
-			public void onClick(View view) {
-				refreshLocation();
-			}
-		});
+		if (button != null) {
+			button.setOnClickListener(v -> refreshLocation());
+		}
 	}
 	
 	/**
