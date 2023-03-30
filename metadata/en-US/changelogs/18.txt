@@ -1,0 +1,5 @@
+1.6 (2011.04.25)
+
+* misc bug fixes
+* added ZestAdz
+* added support for auto-updates

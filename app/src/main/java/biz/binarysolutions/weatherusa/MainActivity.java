@@ -21,10 +21,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -279,7 +275,7 @@ public class MainActivity
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 	    
 	    setLocationHandler();
@@ -290,12 +286,9 @@ public class MainActivity
 	
 	    displayLastKnownLocation();
 	    displayLastKnownForecast();
-	    setButtonListeners();
+		setButtonListeners();
 
-		MobileAds.initialize(this);
-		AdView mAdView = findViewById(R.id.adView);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		mAdView.loadAd(adRequest);
+		AdHandler.initialize(this);
 	}
 	
 	@Override

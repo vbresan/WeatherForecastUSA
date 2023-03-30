@@ -1,0 +1,7 @@
+1.7.1 (2013.07.13)
+
+* removing ACRA
+* removing ZestAdz
+* removing AdWhirl
+* enabling installation on SD card
+* built with Android 4.2

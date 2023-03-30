@@ -1,0 +1,4 @@
+2.0 (2019.08.28)
+
+* removing update library
+* removing Flurry analytics

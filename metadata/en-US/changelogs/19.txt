@@ -1,0 +1,7 @@
+1.7 (2011.10.17)
+
+* Updating Android Application Auto Update (AAAU) Library
+* Replacing in-house analytics with Flurry
+* Adding About Library
+* Adding ACRA
+* Displaying error message when location is outside of US
