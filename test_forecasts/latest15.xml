@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<dwml version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.nws.noaa.gov/forecasts/xml/DWMLgen/schema/DWML.xsd">
+  <head>
+    <product srsName="WGS 1984" concise-name="time-series" operational-mode="official">
+      <title>NOAA's National Weather Service Forecast Data</title>
+      <field>meteorological</field>
+      <category>forecast</category>
+      <creation-date refresh-frequency="PT1H">2009-10-15T12:00:50Z</creation-date>
+    </product>
+    <source>
+      <more-information>http://www.nws.noaa.gov/forecasts/xml/</more-information>
+      <production-center>Meteorological Development Laboratory<sub-center>Product Generation Branch</sub-center></production-center>
+      <disclaimer>http://www.nws.noaa.gov/disclaimer.html</disclaimer>
+      <credit>http://www.weather.gov/</credit>
+      <credit-logo>http://www.weather.gov/images/xml_logo.gif</credit-logo>
+      <feedback>http://www.weather.gov/feedback.php</feedback>
+    </source>
+  </head>
+  <data>
+    <location>
+      <location-key>point1</location-key>
+      <point latitude="25.00" longitude="-80.01"/>
+    </location>
+    <moreWeatherInformation applicable-location="point1">http://forecast.weather.gov/MapClick.php?textField1=25.00&amp;textField2=-80.01</moreWeatherInformation>
+    <time-layout time-coordinate="local" summarization="none">
+      <layout-key>k-p24h-n7-1</layout-key>
+      <start-valid-time>2009-10-15T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-15T20:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-16T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-16T20:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-17T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-17T20:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-18T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-18T20:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-19T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-19T20:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-20T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-20T20:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-21T08:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-21T20:00:00-04:00</end-valid-time>
+    </time-layout>
+    <time-layout time-coordinate="local" summarization="none">
+      <layout-key>k-p24h-n6-2</layout-key>
+      <start-valid-time>2009-10-15T20:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-16T09:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-16T20:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-17T09:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-17T20:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-18T09:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-18T20:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-19T09:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-19T20:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-20T09:00:00-04:00</end-valid-time>
+      <start-valid-time>2009-10-20T20:00:00-04:00</start-valid-time>
+      <end-valid-time>2009-10-21T09:00:00-04:00</end-valid-time>
+    </time-layout>
+    <time-layout time-coordinate="local" summarization="none">
+      <layout-key>k-p3h-n34-3</layout-key>
+      <start-valid-time>2009-10-15T17:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-15T20:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-15T23:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T02:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T05:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T08:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T11:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T14:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T17:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T20:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-16T23:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T02:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T05:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T08:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T11:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T14:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T17:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-17T20:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-18T02:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-18T08:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-18T14:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-18T20:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-19T02:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-19T08:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-19T14:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-19T20:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-20T02:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-20T08:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-20T14:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-20T20:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-21T02:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-21T08:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-21T14:00:00-04:00</start-valid-time>
+      <start-valid-time>2009-10-21T20:00:00-04:00</start-valid-time>
+    </time-layout>
+    <parameters applicable-location="point1">
+      <temperature type="maximum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+        <name>Daily Maximum Temperature</name>
+        <value>87</value>
+        <value>86</value>
+        <value>85</value>
+        <value>80</value>
+        <value>80</value>
+        <value>83</value>
+        <value>84</value>
+      </temperature>
+      <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n6-2">
+        <name>Daily Minimum Temperature</name>
+        <value>82</value>
+        <value>78</value>
+        <value>75</value>
+        <value>74</value>
+        <value>77</value>
+        <value>79</value>
+      </temperature>
+      <weather time-layout="k-p3h-n34-3">
+        <name>Weather Type, Coverage, and Intensity</name>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="isolated" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="isolated" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="isolated" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="isolated" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="scattered" intensity="none" weather-type="thunderstorms" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+          <value coverage="scattered" intensity="moderate" additive="and" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+        <weather-conditions>
+          <value coverage="isolated" intensity="moderate" weather-type="rain showers" qualifier="none">
+            <visibility xsi:nil="true"/>
+          </value>
+        </weather-conditions>
+      </weather>
+      <conditions-icon type="forecast-NWS" time-layout="k-p3h-n34-3">
+        <name>Conditions Icons</name>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/scttsra10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/scttsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/scttsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/scttsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/ntsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/ntsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/ntsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/ntsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/tsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/tsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/tsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/tsra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/nra30.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/nra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/shra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/shra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_shwrs10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_nshwrs10.jpg</icon-link>
+      </conditions-icon>
+    </parameters>
+  </data>
+</dwml>
