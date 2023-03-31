@@ -13,8 +13,8 @@ android {
         applicationId "biz.binarysolutions.weatherusa"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 23
-        versionName "3.0"
+        versionCode 24
+        versionName "3.0.1"
 
         setProperty("archivesBaseName", "$applicationId-$versionName")
     }
