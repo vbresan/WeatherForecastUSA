@@ -24,7 +24,7 @@ public class ForecastUpdater extends Thread {
 		"https://graphical.weather.gov/xml/SOAP_server/ndfdXMLclient.php";
 
 	private static final String APP_URL =
-		"https://play.google.com/store/apps/details?id=biz.binarysolutions.weatherusa";
+		"https://github.com/vbresan/WeatherForecastUSA";
 
 	private static final String APP_EMAIL =
 		"support+weatherusa@binarysolutions.biz";
