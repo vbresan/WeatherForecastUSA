@@ -95,9 +95,8 @@ public class ForecastHandler implements ForecastUpdaterListener {
 	}
 
 	/**
-	 * @param context 
-	 * @param location 
-	 * 
+	 *
+	 * @param location
 	 */
 	public void updateForecast(Location location) {
 		
