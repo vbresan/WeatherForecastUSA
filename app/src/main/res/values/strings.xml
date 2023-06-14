@@ -8,7 +8,7 @@
     <string name="Dew">Dew:</string>
     <string name="EnableGPS">Enable</string>
     <string name="EnterZIPCode">Enter ZIP</string>
-    <string name="ForecastReceived">Forecast received:</string>
+    <string name="ForecastReceived">Forecast received:\u0020</string>
     <string name="ForecastUnavailable">It looks like your location is outside of US. Please enter a ZIP code instead.</string>
     <string name="GettingForecast">Getting forecast &#8230;</string>
     <string name="High">High:</string>
@@ -22,5 +22,5 @@
     <string name="RefreshLocation">Refresh location</string>
     <string name="Settings">Settings</string>
 	<string name="Unknown">Unknown</string>
-	<string name="YourLocation">Your location:</string>
+	<string name="YourLocation">Your location:\u0020</string>
 </resources>

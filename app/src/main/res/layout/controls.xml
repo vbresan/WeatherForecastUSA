@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    >
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/ForecastReceived"
+            android:textColor="#000000"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            />
+
+        <TextView
+            android:id="@+id/TextViewForecastRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Never"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/ButtonRefreshForecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Refresh"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/YourLocation"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            />
+
+        <TextView
+            android:id="@+id/TextViewLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/Unknown"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/ButtonRefreshLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Refresh"
+            />
+    </TableRow>
+</TableLayout>
