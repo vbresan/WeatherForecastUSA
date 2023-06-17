@@ -1,17 +1,15 @@
 package biz.binarysolutions.weatherusa.components.forecast;
 
+import android.app.Activity;
+import android.location.Location;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.location.Location;
-import biz.binarysolutions.weatherusa.R;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastSaver;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastUpdaterListener;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers.ForecastJSONParser;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers.ForecastXMLParser;
 import biz.binarysolutions.weatherusa.util.StringUtil;
@@ -20,9 +18,8 @@ import biz.binarysolutions.weatherusa.util.StringUtil;
  * 
  *
  */
-public class ForecastHandler implements ForecastUpdaterListener { 
+public class ForecastHandler {
 	
-	private static final String FILE_NAME_XML  = "latest.xml";
 	private static final String FILE_NAME_JSON = "latest.json";
 	
 	private static final String FULL_PATH = "/data/data/biz.binarysolutions.weatherusa/files/";
@@ -31,8 +28,6 @@ public class ForecastHandler implements ForecastUpdaterListener {
 	private ForecastHandlerListener listener;
 	
 	private ForecastDisplay display;
-	
-	private boolean isForecastUpdated = false;
 	
 	/**
 	 * TODO: load forecast in separate thread?
@@ -52,6 +47,26 @@ public class ForecastHandler implements ForecastUpdaterListener {
 		}
 		
 		return forecast;
+	}
+
+	/**
+	 *
+	 * @param forecast
+	 */
+	private void onForecastAvailable(String forecast) {
+
+		if (forecast != null && forecast.startsWith("<?xml")) {
+
+			display.clear();
+			new ForecastXMLParser(forecast, display).start();
+
+			String json = display.toJSONObject().toString();
+			new ForecastSaver(activity, FILE_NAME_JSON, json).start();
+
+			listener.onForecastAvailable();
+		} else {
+			listener.onForecastUnavailable();
+		}
 	}
 
 	/**
@@ -78,7 +93,7 @@ public class ForecastHandler implements ForecastUpdaterListener {
 	
 		Date date = null;
 	
-		File file = new File(FULL_PATH + FILE_NAME_XML);
+		File file = new File(FULL_PATH + FILE_NAME_JSON);
 		if (file.exists()) {
 			date = new Date(file.lastModified());
 		}
@@ -103,40 +118,14 @@ public class ForecastHandler implements ForecastUpdaterListener {
 		if (location == null) {
 			return;
 		}
-		
-		ProgressDialog dialog = ProgressDialog.show(
-			activity, "", activity.getString(R.string.GettingForecast));
-		
-		display.clear();
-		new ForecastUpdater(location, dialog, this).start();
-		isForecastUpdated = true;
-	}
 
-	/**
-	 * 
-	 */
-	public void saveForecast() {
-		
-		if (isForecastUpdated) {
-			String json = display.toJSONObject().toString();
-			new ForecastSaver(activity, FILE_NAME_JSON, json).start();
-		}
-	}
-
-	@Override
-	public void onForecastAvailable(String forecast) {
-		
-		if (forecast != null && forecast.startsWith("<?xml")) {
-			new ForecastSaver(activity, FILE_NAME_XML, forecast).start();
-			new ForecastXMLParser(forecast, display).start();
-			listener.onForecastAvailable(forecast);
-		} else {
-			listener.onForecastUnavailable();
-		}
-	}
-
-	@Override
-	public void onConnectionError() {
-		listener.onConnectionError();
+		new ForecastUpdater(location) {
+			@Override
+			protected void onResponseReceived(String response) {
+				//TODO: once got rid of handler in ForecastXMLParser
+				//	run it on it's native thread
+				activity.runOnUiThread(() -> onForecastAvailable(response));
+			}
+		}.start();
 	}
 }

@@ -10,7 +10,6 @@
     <string name="EnterZIPCode">Enter ZIP</string>
     <string name="ForecastReceived">Forecast received:\u0020</string>
     <string name="ForecastUnavailable">It looks like your location is outside of US. Please enter a ZIP code instead.</string>
-    <string name="GettingForecast">Getting forecast &#8230;</string>
     <string name="High">High:</string>
     <string name="IntroQuestion">How about Refresh?</string>
     <string name="LocationChoice">It looks like location sources are disabled. Would you like to enable them or enter your ZIP code?</string>

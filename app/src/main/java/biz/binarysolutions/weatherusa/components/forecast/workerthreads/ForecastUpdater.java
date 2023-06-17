@@ -1,24 +1,19 @@
 package biz.binarysolutions.weatherusa.components.forecast.workerthreads;
 
+import android.location.Location;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.app.ProgressDialog;
-import android.location.Location;
-import android.os.Handler;
-import android.os.Message;
-
-import biz.binarysolutions.weatherusa.components.MessageStatus;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastUpdaterListener;
 import biz.binarysolutions.weatherusa.util.InternetUtil;
 
 /**
  * 
  *
  */
-public class ForecastUpdater extends Thread {
+public abstract class ForecastUpdater extends Thread {
 	
 	private static final String URI = 
 		"https://graphical.weather.gov/xml/SOAP_server/ndfdXMLclient.php";
@@ -36,9 +31,6 @@ public class ForecastUpdater extends Thread {
 		new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
 	private final Location location;
-	private final Handler  handler;
-	
-	private String forecast = "";
 
 	/**
 	 * 
@@ -137,54 +129,26 @@ public class ForecastUpdater extends Thread {
 	}
 
 	/**
+	 *
+	 * @param response
+	 */
+	protected abstract void onResponseReceived(String response);
+
+	/**
 	 * 
 	 * @param location
-	 * @param dialog
-	 * @param listener 
 	 */
-	public ForecastUpdater
-		(
-				Location location, 
-				final ProgressDialog dialog, 
-				final ForecastUpdaterListener listener
-		) {
+	public ForecastUpdater(Location location) {
 		super();
-
 		this.location = location;
-		this.handler  = new Handler() {
-			
-			@Override
-			public void handleMessage(Message message) {
-				
-				try {
-					dialog.dismiss();
-				} catch (Exception e) {
-					// TODO: handle orientation change
-					/*
-					 * Currently, if orientation changes during the
-					 * forecast update, update (seems) aborted and no
-					 * forecast is shown.
-					 * 
-					 * What would happen if forecast update is started
-					 * as new activity?
-					 */
-				}
-				
-				if (message.what == MessageStatus.OK) {
-					listener.onForecastAvailable(forecast);
-				} else {
-					listener.onConnectionError();
-				}
-			}
-		};
 	}
 
 	@Override
 	public void run() {
 		
-		String url = URI + getParameters(location);
-		forecast = InternetUtil.getGetResponse(url, USER_AGENT);
-		
-		handler.sendEmptyMessage(MessageStatus.OK);
+		String url      = URI + getParameters(location);
+		String forecast = InternetUtil.getGetResponse(url, USER_AGENT);
+
+		onResponseReceived(forecast);
 	}
 }

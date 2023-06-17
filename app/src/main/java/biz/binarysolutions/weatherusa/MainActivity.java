@@ -100,6 +100,8 @@ public class MainActivity
 	 * 
 	 */
 	private void refreshForecast() {
+
+		setForecastButtonEnabled(false);
 		Location location = locationHandler.getLastKnownLocation();
 		forecastHandler.updateForecast(location);
 	}
@@ -310,7 +312,7 @@ public class MainActivity
 
 	@Override
 	public void onPause() {
-		forecastHandler.saveForecast();
+		//TODO: is saving preferences necessary?
 		Preferences.save(getPreferences(MODE_PRIVATE), locationHandler);
 		super.onPause();
 	}
@@ -365,13 +367,15 @@ public class MainActivity
 	}
 
 	@Override
-	public void onForecastAvailable(String forecast) {
+	public void onForecastAvailable() {
 		updateForecastRequestView(new Date());
+		setForecastButtonEnabled(true);
 	}
 	
 	@Override
 	public void onForecastUnavailable() {
 		showDialog(DialogCode.FORECAST_UNAVAILABLE);
+		setForecastButtonEnabled(true);
 	}
 
 	@Override
