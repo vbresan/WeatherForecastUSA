@@ -10,9 +10,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -230,14 +227,14 @@ public class MainActivity
 	private void setForecastHandler() {
 		forecastHandler = new ForecastHandler(this, this);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private void goToLocationSources() {
 		startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -250,7 +247,7 @@ public class MainActivity
 	    Preferences.load(getPreferences(MODE_PRIVATE), locationHandler);
 	
 	    displayLastKnownLocation();
-	    displayLastKnownForecast();
+		displayLastKnownForecast();
 		setButtonListeners();
 
 		AdHandler.initialize(this);
@@ -265,35 +262,7 @@ public class MainActivity
 		Preferences.save(getPreferences(MODE_PRIVATE), locationHandler);
 		super.onPause();
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu, menu);
-	    return true;		
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		
-	 	switch (item.getItemId()) {
-	 	
-	 	case R.id.menuItemRefreshForecast:
-	 		refreshForecast();
-	 		return true;
-	 		
-	 	case R.id.menuItemRefreshLocation:
-	 		refreshLocation();
-	 		return true;
 
-        case R.id.menuItemLocationSources:
-        	goToLocationSources();
-        	return true;        	
-        }
-		
-		return super.onOptionsItemSelected(item);
-	}
-	
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		

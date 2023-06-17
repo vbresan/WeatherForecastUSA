@@ -13,13 +13,9 @@
     <string name="High">High:</string>
     <string name="IntroQuestion">How about Refresh?</string>
     <string name="LocationChoice">It looks like location sources are disabled. Would you like to enable them or enter your ZIP code?</string>
-    <string name="LocationSources">Location sources</string>
     <string name="Low">Low:</string>
     <string name="Never">Never</string>
     <string name="Refresh">Refresh</string>
-    <string name="RefreshForecast">Refresh forecast</string>
-    <string name="RefreshLocation">Refresh location</string>
-    <string name="Settings">Settings</string>
 	<string name="Unknown">Unknown</string>
 	<string name="YourLocation">Your location:\u0020</string>
 </resources>
