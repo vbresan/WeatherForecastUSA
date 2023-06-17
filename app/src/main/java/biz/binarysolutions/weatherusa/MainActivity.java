@@ -243,7 +243,6 @@ public class MainActivity
 	    setLocationHandler();
 	    setForecastHandler();
 	    
-	    setForecastButtonEnabled(false);
 	    Preferences.load(getPreferences(MODE_PRIVATE), locationHandler);
 	
 	    displayLastKnownLocation();
