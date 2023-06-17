@@ -58,10 +58,16 @@ public class ForecastHandler {
 		if (forecast != null && forecast.startsWith("<?xml")) {
 
 			display.clear();
-			new ForecastXMLParser(forecast, display).start();
-
-			String json = display.toJSONObject().toString();
-			new ForecastSaver(activity, FILE_NAME_JSON, json).start();
+			new ForecastXMLParser(forecast, display) {
+				@Override
+				protected void onDone() {
+					// must run on UI thread as that's where display update is enqueued
+					activity.runOnUiThread(() -> {
+						String json = display.toJSONString();
+						new ForecastSaver(activity, FILE_NAME_JSON, json).start();
+					});
+				}
+			}.start();
 
 			listener.onForecastAvailable();
 		} else {

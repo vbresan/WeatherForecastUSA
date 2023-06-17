@@ -21,7 +21,7 @@ import biz.binarysolutions.weatherusa.util.StringUtil;
  * 
  *
  */
-public class ForecastXMLParser extends Thread {
+public abstract class ForecastXMLParser extends Thread {
 	
 	private static final String TIMESTAMP_DATE = "yyyy-MM-dd";
 	private static final String TIMESTAMP_FULL = "yyyy-MM-dd'T'HH:mm";
@@ -351,6 +351,11 @@ public class ForecastXMLParser extends Thread {
 			eventType = parser.next();
 		}		
 	}
+
+	/**
+	 *
+	 */
+	protected abstract void onDone();
 	
 	/**
 	 * 
@@ -376,7 +381,7 @@ public class ForecastXMLParser extends Thread {
 			XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
 			parser.setInput(StringUtil.getInputStream(forecast), "UTF-8");
 			parse(parser);
-			
+			onDone();
 		} catch (Exception e) {
 			// TODO inform user about the error?
 		} 

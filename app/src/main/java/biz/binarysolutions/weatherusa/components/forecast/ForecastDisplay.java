@@ -582,7 +582,7 @@ class ForecastDisplay implements
 	 * 
 	 * @return
 	 */
-	public JSONObject toJSONObject() {
+	public String toJSONString() {
 		
 		JSONObject json = new JSONObject();
 
@@ -606,6 +606,6 @@ class ForecastDisplay implements
 			// do nothing
 		}
 	
-		return json;
+		return json.toString();
 	}
 }
