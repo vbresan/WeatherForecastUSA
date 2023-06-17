@@ -25,7 +25,7 @@ public abstract class ForecastUpdater extends Thread {
 		"support+weatherusa@binarysolutions.biz";
 
 	public static final String USER_AGENT =
-		"WeatherForecastUSA/v3.x (" + APP_URL + "; " + APP_EMAIL + ")";
+		"WeatherForecastUSA/v4.x (" + APP_URL + "; " + APP_EMAIL + ")";
 
 	private static final SimpleDateFormat sdf = 
 		new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
