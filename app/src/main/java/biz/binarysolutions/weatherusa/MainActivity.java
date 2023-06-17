@@ -6,11 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -236,43 +234,8 @@ public class MainActivity
 	/**
 	 * 
 	 */
-	private void goToSettings() {
-		
-		Intent settings = new Intent(this, PreferencesActivity.class);
-    	startActivity(settings);
-	}	
-	
-	/**
-	 * 
-	 */
 	private void goToLocationSources() {
 		startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-	}
-	
-	/**
-	 * 
-	 * @param preferences
-	 * @return
-	 */
-	private boolean shouldRefreshLocation(SharedPreferences preferences) {
-	
-		String key          = getString(R.string.preferences_locationUpdates_key);
-		String defaultValue = getString(R.string.preferences_locationUpdates_default_value);
-		
-		return preferences.getBoolean(key, Boolean.getBoolean(defaultValue));
-	}
-
-	/**
-	 * 
-	 * @param preferences
-	 * @return
-	 */
-	private boolean shouldRefreshForecast(SharedPreferences preferences) {
-	
-		String key          = getString(R.string.preferences_forecastUpdates_key);
-		String defaultValue = getString(R.string.preferences_forecastUpdates_default_value);
-		
-		return preferences.getBoolean(key, Boolean.getBoolean(defaultValue));
 	}
 	
 	@Override
@@ -291,28 +254,14 @@ public class MainActivity
 		setButtonListeners();
 
 		AdHandler.initialize(this);
-	}
-	
-	@Override
-	protected void onResume() {
-		
-		SharedPreferences preferences = 
-			PreferenceManager.getDefaultSharedPreferences(this);
-		
-		if (shouldRefreshLocation(preferences)) {
-			refreshLocation();
-		}
-		
-		if (shouldRefreshForecast(preferences)) {
-			refreshForecast();
-		}
-		
-		super.onResume();
+
+		refreshLocation();
+		refreshForecast();
 	}
 
 	@Override
 	public void onPause() {
-		//TODO: is saving preferences necessary?
+		//TODO: this is saving location only, refactor it!
 		Preferences.save(getPreferences(MODE_PRIVATE), locationHandler);
 		super.onPause();
 	}
@@ -328,10 +277,6 @@ public class MainActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 	 	switch (item.getItemId()) {
-	 	
-	 	case R.id.menuItemSettings:
-	 		goToSettings();
-	 		return true;
 	 	
 	 	case R.id.menuItemRefreshForecast:
 	 		refreshForecast();
