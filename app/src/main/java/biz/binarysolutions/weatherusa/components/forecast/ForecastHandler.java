@@ -1,14 +1,15 @@
 package biz.binarysolutions.weatherusa.components.forecast;
 
 import android.app.Activity;
+import android.content.ContextWrapper;
 import android.location.Location;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastSaver;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers.ForecastJSONParser;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers.ForecastXMLParser;
@@ -20,26 +21,23 @@ import biz.binarysolutions.weatherusa.util.StringUtil;
  */
 public class ForecastHandler {
 	
-	private static final String FILE_NAME_JSON = "latest.json";
-	
-	private static final String FULL_PATH = "/data/data/biz.binarysolutions.weatherusa/files/";
-	
-	private Activity activity;
-	private ForecastHandlerListener listener;
-	
-	private ForecastDisplay display;
+	private static final String FILE_NAME = "latest.json";
+
+	private final Activity                activity;
+	private final ForecastHandlerListener listener;
+	private final ForecastDisplay         display;
 	
 	/**
 	 * TODO: load forecast in separate thread?
 	 * 
 	 * @return
 	 */
-	private String loadForecast(String fileName) {
+	private String loadForecast() {
 		
 		String forecast = "";
 		
 		try {
-			FileInputStream in = activity.openFileInput(fileName);
+			FileInputStream in = activity.openFileInput(FILE_NAME);
 			forecast = StringUtil.getString(in);
 			in.close();
 		} catch (IOException e) {
@@ -47,6 +45,31 @@ public class ForecastHandler {
 		}
 		
 		return forecast;
+	}
+
+	/**
+	 *
+	 * @param content
+	 */
+	private void saveForecast(String content) {
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					FileOutputStream out = activity.openFileOutput(
+						FILE_NAME,
+						ContextWrapper.MODE_PRIVATE
+					);
+
+					out.write(content.getBytes());
+					out.close();
+
+				} catch (IOException e) {
+					// do nothing
+				}
+			}
+		}.start();
 	}
 
 	/**
@@ -61,11 +84,11 @@ public class ForecastHandler {
 			new ForecastXMLParser(forecast, display) {
 				@Override
 				protected void onDone() {
-					// must run on UI thread as that's where display update is enqueued
-					activity.runOnUiThread(() -> {
-						String json = display.toJSONString();
-						new ForecastSaver(activity, FILE_NAME_JSON, json).start();
-					});
+					/* must run on UI thread as that's where display updates
+						are enqueued */
+					activity.runOnUiThread(
+						() -> saveForecast(display.toJSONString())
+					);
 				}
 			}.start();
 
@@ -98,8 +121,9 @@ public class ForecastHandler {
 	public Date getLastKnownForecastDate() {
 	
 		Date date = null;
-	
-		File file = new File(FULL_PATH + FILE_NAME_JSON);
+
+		String path = activity.getFilesDir().getPath();
+		File file = new File(path, FILE_NAME);
 		if (file.exists()) {
 			date = new Date(file.lastModified());
 		}
@@ -112,7 +136,7 @@ public class ForecastHandler {
 	 * @return
 	 */
 	public void getLastKnownForecast() {
-		new ForecastJSONParser(loadForecast(FILE_NAME_JSON), display).start();
+		new ForecastJSONParser(loadForecast(), display).start();
 	}
 
 	/**
