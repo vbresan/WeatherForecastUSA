@@ -199,12 +199,12 @@ public class MainActivity
 	 */
 	private void setButtonListeners() {
 		
-		Button button = (Button) findViewById(R.id.ButtonRefreshForecast);
+		Button button = findViewById(R.id.ButtonRefreshForecast);
 		if (button != null) {
 			button.setOnClickListener(v -> refreshForecast());
 		}
 
-		button = (Button) findViewById(R.id.ButtonRefreshLocation);
+		button = findViewById(R.id.ButtonRefreshLocation);
 		if (button != null) {
 			button.setOnClickListener(v -> refreshLocation());
 		}
