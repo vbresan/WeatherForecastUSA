@@ -72,133 +72,133 @@ class ForecastDisplay implements
 	private void setTextViewArrays() {
 		
 		weatherBoxTitle = new TextView[] {
-			activity.findViewById(R.id.TextViewWeatherBoxTitle01),
-			activity.findViewById(R.id.TextViewWeatherBoxTitle02),
-			activity.findViewById(R.id.TextViewWeatherBoxTitle03),
-			activity.findViewById(R.id.TextViewWeatherBoxTitle04),
-			activity.findViewById(R.id.TextViewWeatherBoxTitle05),
-			activity.findViewById(R.id.TextViewWeatherBoxTitle06),
-			activity.findViewById(R.id.TextViewWeatherBoxTitle07),
+			activity.findViewById(R.id.textViewWeatherBoxTitle01),
+			activity.findViewById(R.id.textViewWeatherBoxTitle02),
+			activity.findViewById(R.id.textViewWeatherBoxTitle03),
+			activity.findViewById(R.id.textViewWeatherBoxTitle04),
+			activity.findViewById(R.id.textViewWeatherBoxTitle05),
+			activity.findViewById(R.id.textViewWeatherBoxTitle06),
+			activity.findViewById(R.id.textViewWeatherBoxTitle07),
 		};
 		
 		weatherBox = new LinearLayout[] {
-			activity.findViewById(R.id.LinearLayoutWeatherBox01),
-			activity.findViewById(R.id.LinearLayoutWeatherBox02),
-			activity.findViewById(R.id.LinearLayoutWeatherBox03),
-			activity.findViewById(R.id.LinearLayoutWeatherBox04),
-			activity.findViewById(R.id.LinearLayoutWeatherBox05),
-			activity.findViewById(R.id.LinearLayoutWeatherBox06),
-			activity.findViewById(R.id.LinearLayoutWeatherBox07),
+			activity.findViewById(R.id.linearLayoutWeatherBox01),
+			activity.findViewById(R.id.linearLayoutWeatherBox02),
+			activity.findViewById(R.id.linearLayoutWeatherBox03),
+			activity.findViewById(R.id.linearLayoutWeatherBox04),
+			activity.findViewById(R.id.linearLayoutWeatherBox05),
+			activity.findViewById(R.id.linearLayoutWeatherBox06),
+			activity.findViewById(R.id.linearLayoutWeatherBox07),
 		};
 		
 		high = new TextView[] {
-			activity.findViewById(R.id.TextViewHigh01),
-			activity.findViewById(R.id.TextViewHigh02),
-			activity.findViewById(R.id.TextViewHigh03),
-			activity.findViewById(R.id.TextViewHigh04),
-			activity.findViewById(R.id.TextViewHigh05),
-			activity.findViewById(R.id.TextViewHigh06),
-			activity.findViewById(R.id.TextViewHigh07),
+			activity.findViewById(R.id.textViewHigh01),
+			activity.findViewById(R.id.textViewHigh02),
+			activity.findViewById(R.id.textViewHigh03),
+			activity.findViewById(R.id.textViewHigh04),
+			activity.findViewById(R.id.textViewHigh05),
+			activity.findViewById(R.id.textViewHigh06),
+			activity.findViewById(R.id.textViewHigh07),
 		};
 		
 		highValue = new TextView[] {
-			activity.findViewById(R.id.TextViewHighValue01),
-			activity.findViewById(R.id.TextViewHighValue02),
-			activity.findViewById(R.id.TextViewHighValue03),
-			activity.findViewById(R.id.TextViewHighValue04),
-			activity.findViewById(R.id.TextViewHighValue05),
-			activity.findViewById(R.id.TextViewHighValue06),
-			activity.findViewById(R.id.TextViewHighValue07),
+			activity.findViewById(R.id.textViewHighValue01),
+			activity.findViewById(R.id.textViewHighValue02),
+			activity.findViewById(R.id.textViewHighValue03),
+			activity.findViewById(R.id.textViewHighValue04),
+			activity.findViewById(R.id.textViewHighValue05),
+			activity.findViewById(R.id.textViewHighValue06),
+			activity.findViewById(R.id.textViewHighValue07),
 		};
 		
 		low = new TextView[] {
-			activity.findViewById(R.id.TextViewLow01),
-			activity.findViewById(R.id.TextViewLow02),
-			activity.findViewById(R.id.TextViewLow03),
-			activity.findViewById(R.id.TextViewLow04),
-			activity.findViewById(R.id.TextViewLow05),
-			activity.findViewById(R.id.TextViewLow06),
-			activity.findViewById(R.id.TextViewLow07),
+			activity.findViewById(R.id.textViewLow01),
+			activity.findViewById(R.id.textViewLow02),
+			activity.findViewById(R.id.textViewLow03),
+			activity.findViewById(R.id.textViewLow04),
+			activity.findViewById(R.id.textViewLow05),
+			activity.findViewById(R.id.textViewLow06),
+			activity.findViewById(R.id.textViewLow07),
 		};
 		
 		lowValue = new TextView[] {
-			activity.findViewById(R.id.TextViewLowValue01),
-			activity.findViewById(R.id.TextViewLowValue02),
-			activity.findViewById(R.id.TextViewLowValue03),
-			activity.findViewById(R.id.TextViewLowValue04),
-			activity.findViewById(R.id.TextViewLowValue05),
-			activity.findViewById(R.id.TextViewLowValue06),
-			activity.findViewById(R.id.TextViewLowValue07),
+			activity.findViewById(R.id.textViewLowValue01),
+			activity.findViewById(R.id.textViewLowValue02),
+			activity.findViewById(R.id.textViewLowValue03),
+			activity.findViewById(R.id.textViewLowValue04),
+			activity.findViewById(R.id.textViewLowValue05),
+			activity.findViewById(R.id.textViewLowValue06),
+			activity.findViewById(R.id.textViewLowValue07),
 		};
 		
 		apparent = new TextView[] {
-			activity.findViewById(R.id.TextViewApparent01),
-			activity.findViewById(R.id.TextViewApparent02),
-			activity.findViewById(R.id.TextViewApparent03),
-			activity.findViewById(R.id.TextViewApparent04),
-			activity.findViewById(R.id.TextViewApparent05),
-			activity.findViewById(R.id.TextViewApparent06),
-			activity.findViewById(R.id.TextViewApparent07),
+			activity.findViewById(R.id.textViewApparent01),
+			activity.findViewById(R.id.textViewApparent02),
+			activity.findViewById(R.id.textViewApparent03),
+			activity.findViewById(R.id.textViewApparent04),
+			activity.findViewById(R.id.textViewApparent05),
+			activity.findViewById(R.id.textViewApparent06),
+			activity.findViewById(R.id.textViewApparent07),
 		};
 			
 		apparentValue = new TextView[] {
-			activity.findViewById(R.id.TextViewApparentValue01),
-			activity.findViewById(R.id.TextViewApparentValue02),
-			activity.findViewById(R.id.TextViewApparentValue03),
-			activity.findViewById(R.id.TextViewApparentValue04),
-			activity.findViewById(R.id.TextViewApparentValue05),
-			activity.findViewById(R.id.TextViewApparentValue06),
-			activity.findViewById(R.id.TextViewApparentValue07),
+			activity.findViewById(R.id.textViewApparentValue01),
+			activity.findViewById(R.id.textViewApparentValue02),
+			activity.findViewById(R.id.textViewApparentValue03),
+			activity.findViewById(R.id.textViewApparentValue04),
+			activity.findViewById(R.id.textViewApparentValue05),
+			activity.findViewById(R.id.textViewApparentValue06),
+			activity.findViewById(R.id.textViewApparentValue07),
 		};
 		
 		dew = new TextView[] {
-			activity.findViewById(R.id.TextViewDew01),
-			activity.findViewById(R.id.TextViewDew02),
-			activity.findViewById(R.id.TextViewDew03),
-			activity.findViewById(R.id.TextViewDew04),
-			activity.findViewById(R.id.TextViewDew05),
-			activity.findViewById(R.id.TextViewDew06),
-			activity.findViewById(R.id.TextViewDew07),
+			activity.findViewById(R.id.textViewDew01),
+			activity.findViewById(R.id.textViewDew02),
+			activity.findViewById(R.id.textViewDew03),
+			activity.findViewById(R.id.textViewDew04),
+			activity.findViewById(R.id.textViewDew05),
+			activity.findViewById(R.id.textViewDew06),
+			activity.findViewById(R.id.textViewDew07),
 		};
 			
 		dewValue = new TextView[] {
-			activity.findViewById(R.id.TextViewDewValue01),
-			activity.findViewById(R.id.TextViewDewValue02),
-			activity.findViewById(R.id.TextViewDewValue03),
-			activity.findViewById(R.id.TextViewDewValue04),
-			activity.findViewById(R.id.TextViewDewValue05),
-			activity.findViewById(R.id.TextViewDewValue06),
-			activity.findViewById(R.id.TextViewDewValue07),
+			activity.findViewById(R.id.textViewDewValue01),
+			activity.findViewById(R.id.textViewDewValue02),
+			activity.findViewById(R.id.textViewDewValue03),
+			activity.findViewById(R.id.textViewDewValue04),
+			activity.findViewById(R.id.textViewDewValue05),
+			activity.findViewById(R.id.textViewDewValue06),
+			activity.findViewById(R.id.textViewDewValue07),
 		};		
 		
 		weather = new TextView[] {
-			activity.findViewById(R.id.TextViewWeather01),
-			activity.findViewById(R.id.TextViewWeather02),
-			activity.findViewById(R.id.TextViewWeather03),
-			activity.findViewById(R.id.TextViewWeather04),
-			activity.findViewById(R.id.TextViewWeather05),
-			activity.findViewById(R.id.TextViewWeather06),
-			activity.findViewById(R.id.TextViewWeather07),
+			activity.findViewById(R.id.textViewWeather01),
+			activity.findViewById(R.id.textViewWeather02),
+			activity.findViewById(R.id.textViewWeather03),
+			activity.findViewById(R.id.textViewWeather04),
+			activity.findViewById(R.id.textViewWeather05),
+			activity.findViewById(R.id.textViewWeather06),
+			activity.findViewById(R.id.textViewWeather07),
 		};
 		
 		hazard = new TextView[] {
-			activity.findViewById(R.id.TextViewHazard01),
-			activity.findViewById(R.id.TextViewHazard02),
-			activity.findViewById(R.id.TextViewHazard03),
-			activity.findViewById(R.id.TextViewHazard04),
-			activity.findViewById(R.id.TextViewHazard05),
-			activity.findViewById(R.id.TextViewHazard06),
-			activity.findViewById(R.id.TextViewHazard07),
+			activity.findViewById(R.id.textViewHazard01),
+			activity.findViewById(R.id.textViewHazard02),
+			activity.findViewById(R.id.textViewHazard03),
+			activity.findViewById(R.id.textViewHazard04),
+			activity.findViewById(R.id.textViewHazard05),
+			activity.findViewById(R.id.textViewHazard06),
+			activity.findViewById(R.id.textViewHazard07),
 		};
 		
 		icon = new ImageView[] {
-			activity.findViewById(R.id.ImageViewWeatherIcon01),
-			activity.findViewById(R.id.ImageViewWeatherIcon02),
-			activity.findViewById(R.id.ImageViewWeatherIcon03),
-			activity.findViewById(R.id.ImageViewWeatherIcon04),
-			activity.findViewById(R.id.ImageViewWeatherIcon05),
-			activity.findViewById(R.id.ImageViewWeatherIcon06),
-			activity.findViewById(R.id.ImageViewWeatherIcon07),
+			activity.findViewById(R.id.imageViewWeatherIcon01),
+			activity.findViewById(R.id.imageViewWeatherIcon02),
+			activity.findViewById(R.id.imageViewWeatherIcon03),
+			activity.findViewById(R.id.imageViewWeatherIcon04),
+			activity.findViewById(R.id.imageViewWeatherIcon05),
+			activity.findViewById(R.id.imageViewWeatherIcon06),
+			activity.findViewById(R.id.imageViewWeatherIcon07),
 		};
 	}
 	
@@ -220,7 +220,7 @@ class ForecastDisplay implements
 			text = sdf.format(startDate) + " - " + sdf.format(endDate);
 		}
 		
-		TextView textView = activity.findViewById(R.id.TextViewForecastDates);
+		TextView textView = activity.findViewById(R.id.textViewForecastDates);
 		textView.setText(text);		
 	}
 	

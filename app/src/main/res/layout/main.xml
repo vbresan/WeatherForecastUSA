@@ -1,1040 +1,751 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="bottom"
     android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <TextView
-        android:id="@+id/TextViewForecastDates"
+        android:id="@+id/textViewForecastDates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#000000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+    />
 
     <HorizontalScrollView
-        android:id="@+id/HorizontalScrollView01"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_weight="1.0"
-        android:scrollbars="none" >
+        android:scrollbars="none"
+        >
 
         <LinearLayout
-            android:id="@+id/LinearLayout10"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            >
 
             <LinearLayout
-                android:id="@+id/LinearLayout09"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle01"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle01"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle02"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle02"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle03"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle03"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle04"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle04"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle05"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle05"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle06"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle06"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
 
                 <TextView
-                    android:id="@+id/TextViewWeatherBoxTitle07"
-                    android:layout_width="106dip"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_day"
-                    android:gravity="center"
-                    android:textColor="@drawable/TextColorWeatherBoxTitle" />
+                    android:id="@+id/textViewWeatherBoxTitle07"
+                    style="@style/TextViewWeatherBoxTitleStyle"
+                />
+
             </LinearLayout>
 
             <ScrollView
-                android:id="@+id/ScrollView01"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:fillViewport="true"
-                android:scrollbars="none" >
+                android:scrollbars="none"
+                >
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout04"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    >
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox01"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox01"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh01"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue01"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow01"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue01"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent01"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue01"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew01"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue01"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon01"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon01"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather01"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather01"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard01"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard01"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox02"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox02"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh02"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue02"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow02"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue02"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent02"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue02"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew02"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue02"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon02"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon02"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather02"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather02"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard02"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard02"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox03"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox03"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh03"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue03"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow03"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue03"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent03"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue03"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew03"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue03"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon03"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon03"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather03"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather03"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard03"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard03"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox04"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox04"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh04"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue04"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow04"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue04"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent04"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue04"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew04"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue04"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon04"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon04"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather04"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather04"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard04"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard04"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox05"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox05"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh05"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue05"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow05"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue05"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent05"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue05"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew05"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue05"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon05"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon05"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather05"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather05"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard05"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard05"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox06"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox06"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh06"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue06"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow06"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue06"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent06"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue06"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew06"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue06"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon06"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather06"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard06"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearLayoutWeatherBox07"
-                        android:layout_width="106dip"
-                        android:layout_height="fill_parent"
-                        android:background="@drawable/weather_box"
-                        android:orientation="vertical" >
+                        android:id="@+id/linearLayoutWeatherBox07"
+                        style="@style/LinearLayoutWeatherBoxStyle"
+                        >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewHigh07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewHigh07"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/High"
-                                android:textColor="@drawable/TextColorWeatherBox"
+                                android:visibility="invisible"
                                 android:textStyle="bold"
-                                android:visibility="invisible" />
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewHighValue07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:textStyle="bold" />
+                                android:id="@+id/textViewHighValue07"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                                android:textStyle="bold"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewLow07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewLow07"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Low"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewLowValue07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewLowValue07"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dip" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            android:paddingTop="5dip"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewApparent07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewApparent07"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/App"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewApparentValue07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewApparentValue07"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            >
 
                             <TextView
-                                android:id="@+id/TextViewDew07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:paddingRight="5dip"
+                                android:id="@+id/textViewDew07"
+                                style="@style/TextViewWeatherBoxItemStyle"
                                 android:text="@string/Dew"
-                                android:textColor="@drawable/TextColorWeatherBox"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                            />
 
                             <TextView
-                                android:id="@+id/TextViewDewValue07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@drawable/TextColorWeatherBox" />
+                                android:id="@+id/textViewDewValue07"
+                                style="@style/TextViewWeatherBoxItemStyle"
+                            />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/ImageViewWeatherIcon07"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:maxHeight="60dip"
-                            android:maxWidth="57dip"
-                            android:minHeight="60dip"
-                            android:minWidth="57dip"
-                            android:padding="2dip" />
+                            android:id="@+id/imageViewWeatherIcon07"
+                            style="@style/ImageViewWeatherIconStyle"
+                            tools:ignore="ContentDescription"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewWeather07"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:textColor="@drawable/TextColorWeatherBox"
-                            android:textStyle="bold" />
+                            android:id="@+id/textViewWeather07"
+                            style="@style/TextViewWeatherBoxMessageStyle"
+                        />
 
                         <TextView
-                            android:id="@+id/TextViewHazard07"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
+                            android:id="@+id/textViewHazard07"
+                            style="@style/TextViewWeatherBoxMessageStyle"
                             android:textColor="#FF0000"
-                            android:textStyle="bold" >
-                        </TextView>
+                        />
                     </LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
