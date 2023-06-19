@@ -24,16 +24,13 @@ import java.util.Vector;
 
 import biz.binarysolutions.weatherusa.R;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastJSONParserListener;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastXMLParserListener;
 import biz.binarysolutions.weatherusa.util.DateUtil;
 
 /**
  * 
  *
  */
-class ForecastDisplay implements 
-	ForecastXMLParserListener, ForecastJSONParserListener {
+public class ForecastDisplay {
 	
 	private final Activity activity;
 	
@@ -415,7 +412,10 @@ class ForecastDisplay implements
 		setTextViewArrays();
 	}
 
-	@Override
+	/**
+	 *
+	 * @param startDate
+	 */
 	public void onStartDateAvailable(Date startDate) {
 
 		activity.runOnUiThread(() -> {
@@ -425,36 +425,51 @@ class ForecastDisplay implements
 			displayWeatherBoxTitles(startDate);
 		});
 	}
-	
-	@Override
+
+	/**
+	 *
+	 * @param temperatures
+	 */
 	public void onMaximumTemperaturesAvailable(Vector<String> temperatures) {
 		activity.runOnUiThread(
 			() -> onTemperaturesAvailable(temperatures, high, highValue)
 		);
 	}
 
-	@Override
+	/**
+	 *
+	 * @param temperatures
+	 */
 	public void onMinimumTemperaturesAvailable(Vector<String> temperatures) {
 		activity.runOnUiThread(
 			() -> onTemperaturesAvailable(temperatures, low, lowValue)
 		);
 	}
 
-	@Override
+	/**
+	 *
+	 * @param temperatures
+	 */
 	public void onApparentTemperaturesAvailable(TimelinedData temperatures) {
 		activity.runOnUiThread(
 			() -> onTemperaturesAvailable(temperatures, apparent, apparentValue)
 		);
 	}
 
-	@Override
+	/**
+	 *
+	 * @param temperatures
+	 */
 	public void onDewpointTemperaturesAvailable(TimelinedData temperatures) {
 		activity.runOnUiThread(
 			() -> onTemperaturesAvailable(temperatures, dew, dewValue)
 		);
 	}
 
-	@Override
+	/**
+	 *
+	 * @param weatherSequence
+	 */
 	public void onWeatherAvailable(TimelinedData weatherSequence) {
 
 		activity.runOnUiThread(() -> {
@@ -483,7 +498,10 @@ class ForecastDisplay implements
 		});
 	}
 
-	@Override
+	/**
+	 *
+	 * @param hazardsSequence
+	 */
 	public void onHazardsAvailable(TimelinedData hazardsSequence) {
 
 		activity.runOnUiThread(() -> {
@@ -505,55 +523,82 @@ class ForecastDisplay implements
 		});
 	}
 
-	@Override
+	/**
+	 *
+	 * @param temperatures
+	 */
 	public void onApparentTemperaturesAvailable(Vector<String> temperatures) {
-		onTemperaturesAvailable(temperatures, apparent, apparentValue);
-		
+		activity.runOnUiThread(
+			() -> onTemperaturesAvailable(temperatures, apparent, apparentValue)
+		);
 	}
 
-	@Override
+	/**
+	 *
+	 * @param temperatures
+	 */
 	public void onDewpointTemperaturesAvailable(Vector<String> temperatures) {
-		onTemperaturesAvailable(temperatures, dew, dewValue);
+		activity.runOnUiThread(
+			() -> onTemperaturesAvailable(temperatures, dew, dewValue)
+		);
 	}
 
-	@Override
+	/**
+	 *
+	 * @param weather
+	 */
 	public void onWeatherAvailable(Vector<String> weather) {
-		
-		for (int i = 0, length = weather.size(); i < length; i++) {
 
-			String value = weather.elementAt(i);
-			if (value.length() > 0) {
-				this.weather[i].setText(value);
+		activity.runOnUiThread(() -> {
+
+			for (int i = 0, length = weather.size(); i < length; i++) {
+
+				String value = weather.elementAt(i);
+				if (value.length() > 0) {
+					this.weather[i].setText(value);
+				}
 			}
-		}
+		});
 	}
 
-	@Override
+	/**
+	 *
+	 * @param hazard
+	 */
 	public void onHazardsAvailable(Vector<String> hazard) {
-		
-		for (int i = 0, length = hazard.size(); i < length; i++) {
 
-			String value = hazard.elementAt(i);
-			if (value.length() > 0) {
-				this.hazard[i].setText(value);
-				weatherBox[i].setBackgroundResource(R.drawable.weather_box_hazard);
+		activity.runOnUiThread(() -> {
+
+			for (int i = 0, length = hazard.size(); i < length; i++) {
+
+				String value = hazard.elementAt(i);
+				if (value.length() > 0) {
+					this.hazard[i].setText(value);
+					weatherBox[i].setBackgroundResource(R.drawable.weather_box_hazard);
+				}
 			}
-		}
+		});
 	}
 
-	@Override
+	/**
+	 *
+	 * @param icons
+	 */
 	public void onIconsAvailable(Vector<String> icons) {
 
-		for (int i = 0, length = icons.size(); i < length; i++) {
+		activity.runOnUiThread(() -> {
 
-			String url = icons.elementAt(i);
-			if (url.length() > 0) {
+			for (int i = 0, length = icons.size(); i < length; i++) {
 
-				iconURL[i] = url;
-				GlideUrl glideUrl = getGlideUrl(iconURL[i]);
-				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
+				String url = icons.elementAt(i);
+				if (url.length() > 0) {
+
+					iconURL[i] = url;
+					GlideUrl glideUrl = getGlideUrl(iconURL[i]);
+					Glide.with(icon[i]).load(glideUrl).into(icon[i]);
+				}
 			}
-		}
+		});
 	}
 
 	/**

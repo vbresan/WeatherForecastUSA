@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.Date;
 
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers.ForecastJSONParser;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers.ForecastXMLParser;
+import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastJSONParser;
+import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastXMLParser;
 import biz.binarysolutions.weatherusa.util.StringUtil;
 
 /**

@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers;
+package biz.binarysolutions.weatherusa.components.forecast.workerthreads;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
+import biz.binarysolutions.weatherusa.components.forecast.ForecastDisplay;
 import biz.binarysolutions.weatherusa.components.forecast.TimelinedData;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastXMLParserListener;
 import biz.binarysolutions.weatherusa.util.DateUtil;
 import biz.binarysolutions.weatherusa.util.StringUtil;
 
@@ -50,7 +50,7 @@ public abstract class ForecastXMLParser extends Thread {
 	private final TimelinedData dewPointTemperatures = new TimelinedData();
 	
 	
-	private final ForecastXMLParserListener listener;
+	private final ForecastDisplay listener;
 
 	/**
 	 * 
@@ -308,20 +308,17 @@ public abstract class ForecastXMLParser extends Thread {
 	 *
 	 */
 	protected abstract void onDone();
-	
+
 	/**
-	 * 
+	 *
 	 * @param forecast
+	 * @param display
 	 */
-	public ForecastXMLParser
-		(
-			String forecast, 
-			ForecastXMLParserListener listener
-		) {
+	public ForecastXMLParser(String forecast, ForecastDisplay display) {
 		super();
 		
 		this.forecast = forecast;
-		this.listener = listener;
+		this.listener = display;
 	}
 
 	/**

@@ -1,17 +1,15 @@
-package biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers;
+package biz.binarysolutions.weatherusa.components.forecast.workerthreads;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Vector;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.os.Handler;
-import android.os.Message;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastJSONParserListener;
+import biz.binarysolutions.weatherusa.components.forecast.ForecastDisplay;
 
 /**
  * 
@@ -19,82 +17,29 @@ import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listener
  */
 public class ForecastJSONParser extends Thread {
 	
-	/**
-	 * 
-	 *
-	 */
-	private String forecast;
-	private Date startDate;
+	private final String forecast;
 
-	private Vector<String> maximumTemperatures = new Vector<String>();
-	private Vector<String> minimumTemperatures = new Vector<String>();
+	private final Vector<String> maximumTemperatures = new Vector<>();
+	private final Vector<String> minimumTemperatures = new Vector<>();
 	
-	private Vector<String> apparentTemperatures = new Vector<String>();
-	private Vector<String> dewpointTemperatures = new Vector<String>();
+	private final Vector<String> apparentTemperatures = new Vector<>();
+	private final Vector<String> dewpointTemperatures = new Vector<>();
 	
-	private Vector<String> icons   = new Vector<String>();
-	private Vector<String> weather = new Vector<String>();
-	private Vector<String> hazards = new Vector<String>();	
-	
-	
-	private ForecastJSONParserListener listener;
+	private final Vector<String> icons   = new Vector<>();
+	private final Vector<String> weather = new Vector<>();
+	private final Vector<String> hazards = new Vector<>();
 
-	/**
-	 * 
-	 */
-	private Handler handler = new Handler() {
-		
-		public void handleMessage(Message message) {
-			
-			switch (message.what) {
-			
-			case MessageCodes.START_TIME:
-				listener.onStartDateAvailable(startDate);
-				break;
-				
-			case MessageCodes.MAXIMUM_TEMPERATURES:
-				listener.onMaximumTemperaturesAvailable(maximumTemperatures);
-				break;
-				
-			case MessageCodes.MINIMUM_TEMPERATURES:
-				listener.onMinimumTemperaturesAvailable(minimumTemperatures);
-				break;
-				
-			case MessageCodes.APPARENT_TEMPERATURES:
-				listener.onApparentTemperaturesAvailable(apparentTemperatures);
-				break;
-				
-			case MessageCodes.DEWPOINT_TEMPERATURES:
-				listener.onDewpointTemperaturesAvailable(dewpointTemperatures);
-				break;
-				
-			case MessageCodes.ICONS:
-				listener.onIconsAvailable(icons);
-				break;				
-				
-			case MessageCodes.WEATHER:
-				listener.onWeatherAvailable(weather);
-				break;
-				
-			case MessageCodes.HAZARDS:
-				listener.onHazardsAvailable(hazards);
-
-			default:
-				break;
-			}
-		}
-	};
+	private final ForecastDisplay display;
 
 	/**
 	 *
 	 * @param date
 	 */
 	private void dispatchStartDate(String date) {
-		
-		
+
 		try {
-			startDate = DateFormat.getDateInstance().parse(date);
-			handler.sendEmptyMessage(MessageCodes.START_TIME);
+			Date startDate = DateFormat.getDateInstance().parse(date);
+			display.onStartDateAvailable(startDate);
 		} catch (ParseException e) {
 			// TODO inform user about invalid date format?
 		}
@@ -104,50 +49,50 @@ public class ForecastJSONParser extends Thread {
 	 * 
 	 */
 	private void dispatchMaximumTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.MAXIMUM_TEMPERATURES);
+		display.onMaximumTemperaturesAvailable(maximumTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchMinimumTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.MINIMUM_TEMPERATURES);
+		display.onMinimumTemperaturesAvailable(minimumTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchApparentTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.APPARENT_TEMPERATURES);
+		display.onApparentTemperaturesAvailable(apparentTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchDewpointTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.DEWPOINT_TEMPERATURES);
+		display.onDewpointTemperaturesAvailable(dewpointTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchIcons() {
-		handler.sendEmptyMessage(MessageCodes.ICONS);
-	}	
+		display.onIconsAvailable(icons);
+	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchWeather() {
-		handler.sendEmptyMessage(MessageCodes.WEATHER);
+		display.onWeatherAvailable(weather);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchHazards() {
-		handler.sendEmptyMessage(MessageCodes.HAZARDS);
-	}	
+		display.onHazardsAvailable(hazards);
+	}
 	
 	/**
 	 * 
@@ -164,18 +109,15 @@ public class ForecastJSONParser extends Thread {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param forecast
+	 * @param display
 	 */
-	public ForecastJSONParser
-		(
-			String forecast, 
-			ForecastJSONParserListener listener
-		) {
+	public ForecastJSONParser(String forecast, ForecastDisplay display) {
 		super();
 		
 		this.forecast = forecast;
-		this.listener = listener;
+		this.display  = display;
 	}
 	
 	/**
