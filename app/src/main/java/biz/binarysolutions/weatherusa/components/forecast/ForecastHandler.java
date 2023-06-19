@@ -6,14 +6,15 @@ import android.location.Location;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Vector;
 
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastJSONParser;
+import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastXMLParser;
-import biz.binarysolutions.weatherusa.util.StringUtil;
 
 /**
  * 
@@ -27,26 +28,6 @@ public class ForecastHandler {
 	private final ForecastHandlerListener listener;
 	private final ForecastDisplay         display;
 	
-	/**
-	 * TODO: load forecast in separate thread?
-	 * 
-	 * @return
-	 */
-	private String loadForecast() {
-		
-		String forecast = "";
-		
-		try {
-			FileInputStream in = activity.openFileInput(FILE_NAME);
-			forecast = StringUtil.getString(in);
-			in.close();
-		} catch (IOException e) {
-			// do nothing
-		}
-		
-		return forecast;
-	}
-
 	/**
 	 *
 	 * @param content
@@ -78,24 +59,23 @@ public class ForecastHandler {
 	 */
 	private void onForecastAvailable(String forecast) {
 
-		if (forecast != null && forecast.startsWith("<?xml")) {
-
-			display.clear();
-			new ForecastXMLParser(forecast, display) {
-				@Override
-				protected void onDone() {
-					/* must run on UI thread as that's where display updates
-						are enqueued */
-					activity.runOnUiThread(
-						() -> saveForecast(display.toJSONString())
-					);
-				}
-			}.start();
-
-			listener.onForecastAvailable();
-		} else {
+		if (forecast == null || !forecast.startsWith("<?xml")) {
 			listener.onForecastUnavailable();
+			return;
 		}
+
+		display.clear();
+
+		new ForecastXMLParser(forecast, display) {
+			@Override
+			protected void onDone() {
+				activity.runOnUiThread(() ->
+					saveForecast(display.toJSONString())
+				);
+			}
+		}.start();
+
+		listener.onForecastAvailable();
 	}
 
 	/**
@@ -136,7 +116,73 @@ public class ForecastHandler {
 	 * @return
 	 */
 	public void getLastKnownForecast() {
-		new ForecastJSONParser(loadForecast(), display).start();
+
+		FileInputStream fileInputStream;
+		try {
+			fileInputStream = activity.openFileInput(FILE_NAME);
+		} catch (FileNotFoundException e) {
+			return;
+		}
+
+		new ForecastJSONParser(fileInputStream) {
+
+			@Override
+			public void onStartDateAvailable(Date date) {
+				activity.runOnUiThread(() ->
+					display.onStartDateAvailable(date)
+				);
+			}
+
+			@Override
+			public void onMaximumTemperaturesAvailable(Vector<String> temperatures) {
+				activity.runOnUiThread(() ->
+					display.onMaximumTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			public void onMinimumTemperaturesAvailable(Vector<String> temperatures) {
+				activity.runOnUiThread(() ->
+					display.onMinimumTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			public void onApparentTemperaturesAvailable(Vector<String> temperatures) {
+				activity.runOnUiThread(() ->
+					display.onApparentTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			public void onDewpointTemperaturesAvailable(Vector<String> temperatures) {
+				activity.runOnUiThread(() ->
+					display.onDewpointTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			public void onIconsAvailable(Vector<String> icons) {
+				activity.runOnUiThread(() ->
+					display.onIconsAvailable(icons)
+				);
+			}
+
+			@Override
+			public void onWeatherAvailable(Vector<String> weather) {
+				activity.runOnUiThread(() ->
+					display.onWeatherAvailable(weather)
+				);
+			}
+
+			@Override
+			public void onHazardsAvailable(Vector<String> hazards) {
+				activity.runOnUiThread(() ->
+					display.onHazardsAvailable(hazards)
+				);
+			}
+
+		}.start();
 	}
 
 	/**

@@ -4,156 +4,96 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Vector;
 
-import biz.binarysolutions.weatherusa.components.forecast.ForecastDisplay;
+import biz.binarysolutions.weatherusa.util.StringUtil;
 
 /**
  * 
  *
  */
-public class ForecastJSONParser extends Thread {
+public abstract class ForecastJSONParser extends Thread {
 	
-	private final String forecast;
-
-	private final Vector<String> maximumTemperatures = new Vector<>();
-	private final Vector<String> minimumTemperatures = new Vector<>();
-	
-	private final Vector<String> apparentTemperatures = new Vector<>();
-	private final Vector<String> dewpointTemperatures = new Vector<>();
-	
-	private final Vector<String> icons   = new Vector<>();
-	private final Vector<String> weather = new Vector<>();
-	private final Vector<String> hazards = new Vector<>();
-
-	private final ForecastDisplay display;
+	private final FileInputStream fileInputStream;
 
 	/**
 	 *
-	 * @param date
+	 * @return
 	 */
-	private void dispatchStartDate(String date) {
+	private String getForecast() {
+
+		String forecast = "";
 
 		try {
-			Date startDate = DateFormat.getDateInstance().parse(date);
-			display.onStartDateAvailable(startDate);
-		} catch (ParseException e) {
-			// TODO inform user about invalid date format?
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchMaximumTemperatures() {
-		display.onMaximumTemperaturesAvailable(maximumTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchMinimumTemperatures() {
-		display.onMinimumTemperaturesAvailable(minimumTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchApparentTemperatures() {
-		display.onApparentTemperaturesAvailable(apparentTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchDewpointTemperatures() {
-		display.onDewpointTemperaturesAvailable(dewpointTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchIcons() {
-		display.onIconsAvailable(icons);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchWeather() {
-		display.onWeatherAvailable(weather);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchHazards() {
-		display.onHazardsAvailable(hazards);
-	}
-	
-	/**
-	 * 
-	 * @param vector
-	 * @param array
-	 * @throws JSONException
-	 */
-	private void setVector(Vector<String> vector, JSONArray array) 
-		throws JSONException {
-		
-		for (int i = 0, length = array.length(); i < length; i++) {
-			vector.add(array.getString(i));
-		}		
-	}
-
-	/**
-	 *
-	 * @param forecast
-	 * @param display
-	 */
-	public ForecastJSONParser(String forecast, ForecastDisplay display) {
-		this.forecast = forecast;
-		this.display  = display;
-	}
-	
-	/**
-	 * 
-	 * @param jsonObject
-	 */
-	private String parseStartDate(JSONObject jsonObject) {
-
-		String date = "";
-		
-		try {
-			date = jsonObject.getString("startDate");
-		} catch (JSONException e) {
+			forecast = StringUtil.getString(fileInputStream);
+			fileInputStream.close();
+		} catch (IOException e) {
 			// do nothing
 		}
-		
+
+		return forecast;
+	}
+
+	/**
+	 *
+	 * @param jsonObject
+	 */
+	private Date parseStartDate(JSONObject jsonObject) {
+
+		Date date = null;
+
+		try {
+			String string = jsonObject.getString("startDate");
+			date = DateFormat.getDateInstance().parse(string);
+		} catch (JSONException | ParseException e) {
+			// do nothing
+		}
+
 		return date;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param jsonObject
-	 * @param arrayName 
-	 * @param destination 
+	 * @param arrayName
 	 */
-	private void parseArray
-		(
-				JSONObject     jsonObject, 
-				String         arrayName, 
-				Vector<String> destination
-		) {
-		
+	private Vector<String> getVector(JSONObject jsonObject, String arrayName) {
+
+		Vector<String> vector = new Vector<>();
+
 		try {
-			setVector(destination, jsonObject.getJSONArray(arrayName));
+			JSONArray array = jsonObject.getJSONArray(arrayName);
+			for (int i = 0, length = array.length(); i < length; i++) {
+				vector.add(array.getString(i));
+			}
 		} catch (JSONException e) {
 			// do nothing
 		}
+
+		return vector;
 	}
+
+	/**
+	 *
+	 * @param fileInputStream
+	 */
+	public ForecastJSONParser(FileInputStream fileInputStream) {
+		this.fileInputStream = fileInputStream;
+	}
+
+	public abstract void onStartDateAvailable(Date date);
+	public abstract void onMaximumTemperaturesAvailable(Vector<String> temperatures);
+	public abstract void onMinimumTemperaturesAvailable(Vector<String> temperatures);
+	public abstract void onApparentTemperaturesAvailable(Vector<String> temperatures);
+	public abstract void onDewpointTemperaturesAvailable(Vector<String> temperatures);
+	public abstract void onIconsAvailable(Vector<String> icons);
+	public abstract void onWeatherAvailable(Vector<String> weather);
+	public abstract void onHazardsAvailable(Vector<String> hazards);
 	
 	/**
 	 * 
@@ -162,34 +102,36 @@ public class ForecastJSONParser extends Thread {
 		
 		try {
 			
-			JSONObject jsonObject = new JSONObject(forecast);
+			JSONObject jsonObject = new JSONObject(getForecast());
 			
-			String date = parseStartDate(jsonObject);
-			dispatchStartDate(date);
-			
-			parseArray(jsonObject, "maximumTemperatures", maximumTemperatures);
-			dispatchMaximumTemperatures();
-			
-			parseArray(jsonObject, "minimumTemperatures", minimumTemperatures);
-			dispatchMinimumTemperatures();
-			
-			parseArray(jsonObject, "apparentTemperatures", apparentTemperatures);
-			dispatchApparentTemperatures();
-			
-			parseArray(jsonObject, "dewpointTemperatures", dewpointTemperatures);
-			dispatchDewpointTemperatures();			
-			
-			parseArray(jsonObject, "icons", icons);
-			dispatchIcons();
+			Date date = parseStartDate(jsonObject);
+			onStartDateAvailable(date);
 
-			parseArray(jsonObject, "weather", weather);
-			dispatchWeather();
+			Vector<String> array;
 
-			parseArray(jsonObject, "hazards", hazards);
-			dispatchHazards();
+			array = getVector(jsonObject, "maximumTemperatures");
+			onMaximumTemperaturesAvailable(array);
+
+			array = getVector(jsonObject, "minimumTemperatures");
+			onMinimumTemperaturesAvailable(array);
+
+			array = getVector(jsonObject, "apparentTemperatures");
+			onApparentTemperaturesAvailable(array);
+
+			array = getVector(jsonObject, "dewpointTemperatures");
+			onDewpointTemperaturesAvailable(array);
+
+			array = getVector(jsonObject, "icons");
+			onIconsAvailable(array);
+
+			array = getVector(jsonObject, "weather");
+			onWeatherAvailable(array);
+
+			array = getVector(jsonObject, "hazards");
+			onHazardsAvailable(array);
 			
 		} catch(JSONException e) {
-			//TODO: do nothing?
+			// do nothing
 		}
 	}
 }
