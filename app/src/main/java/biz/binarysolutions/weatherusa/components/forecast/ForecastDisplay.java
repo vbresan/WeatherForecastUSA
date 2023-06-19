@@ -1,7 +1,6 @@
 package biz.binarysolutions.weatherusa.components.forecast;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +26,6 @@ import biz.binarysolutions.weatherusa.R;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastJSONParserListener;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastXMLParserListener;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.WeatherIconSetterListener;
 import biz.binarysolutions.weatherusa.util.DateUtil;
 
 /**
@@ -35,8 +33,7 @@ import biz.binarysolutions.weatherusa.util.DateUtil;
  *
  */
 class ForecastDisplay implements 
-	ForecastXMLParserListener, ForecastJSONParserListener, 
-	WeatherIconSetterListener {
+	ForecastXMLParserListener, ForecastJSONParserListener {
 	
 	private final Activity activity;
 	
@@ -420,78 +417,92 @@ class ForecastDisplay implements
 
 	@Override
 	public void onStartDateAvailable(Date startDate) {
-		
-		this.startDate = startDate;
-		Date endDate = DateUtil.addDays(startDate, DateUtil.DAYS_IN_WEEK - 1);
-		displayForecastRange(startDate, endDate);
-		displayWeatherBoxTitles(startDate);
+
+		activity.runOnUiThread(() -> {
+			this.startDate = startDate;
+			Date endDate = DateUtil.addDays(startDate, DateUtil.DAYS_IN_WEEK - 1);
+			displayForecastRange(startDate, endDate);
+			displayWeatherBoxTitles(startDate);
+		});
 	}
 	
 	@Override
 	public void onMaximumTemperaturesAvailable(Vector<String> temperatures) {
-		onTemperaturesAvailable(temperatures, high, highValue);
+		activity.runOnUiThread(
+			() -> onTemperaturesAvailable(temperatures, high, highValue)
+		);
 	}
 
 	@Override
 	public void onMinimumTemperaturesAvailable(Vector<String> temperatures) {
-		onTemperaturesAvailable(temperatures, low, lowValue);
+		activity.runOnUiThread(
+			() -> onTemperaturesAvailable(temperatures, low, lowValue)
+		);
 	}
 
 	@Override
 	public void onApparentTemperaturesAvailable(TimelinedData temperatures) {
-		onTemperaturesAvailable(temperatures, apparent, apparentValue);
+		activity.runOnUiThread(
+			() -> onTemperaturesAvailable(temperatures, apparent, apparentValue)
+		);
 	}
 
 	@Override
 	public void onDewpointTemperaturesAvailable(TimelinedData temperatures) {
-		onTemperaturesAvailable(temperatures, dew, dewValue);
+		activity.runOnUiThread(
+			() -> onTemperaturesAvailable(temperatures, dew, dewValue)
+		);
 	}
 
 	@Override
 	public void onWeatherAvailable(TimelinedData weatherSequence) {
-		
-		Date midDay = DateUtil.addHours(startDate, 12);
-		Date now    = new Date();
-		Date date   = now.after(midDay) ? now : midDay;
-		
-		for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
-			
-			int index = weatherSequence.indexAfter(date);
-			if (index >= 0) {
-			
-				String event = weatherSequence.dataAt(index);
-				weather[i].setText(formatWeather(event));
-				
-				String url = weatherSequence.iconAt(index);
-				iconURL[i] = url;
 
-				GlideUrl glideUrl = getGlideUrl(iconURL[i]);
-				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
-				//TODO: clear this
-				//new WeatherIconSetter(icon[i], url, activity, this).start();
+		activity.runOnUiThread(() -> {
+
+			Date midDay = DateUtil.addHours(startDate, 12);
+			Date now    = new Date();
+			Date date   = now.after(midDay) ? now : midDay;
+
+			for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
+
+				int index = weatherSequence.indexAfter(date);
+				if (index >= 0) {
+
+					String event = weatherSequence.dataAt(index);
+					weather[i].setText(formatWeather(event));
+
+					String url = weatherSequence.iconAt(index);
+					iconURL[i] = url;
+
+					GlideUrl glideUrl = getGlideUrl(iconURL[i]);
+					Glide.with(icon[i]).load(glideUrl).into(icon[i]);
+				}
+
+				date = DateUtil.addDays(midDay, i + 1);
 			}
-			
-			date = DateUtil.addDays(midDay, i + 1);
-		}
+		});
 	}
 
 	@Override
 	public void onHazardsAvailable(TimelinedData hazardsSequence) {
 
-		Date start = startDate;
-		Date end   = DateUtil.addDays(start, 1);
-		for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
-			
-			int from = hazardsSequence.indexAfter(start);
-			int to   = hazardsSequence.indexBefore(end);
-			
-			if (from != -1) {
-				displayUniqueHazards(i, getUniqueHazards(hazardsSequence, from, to));
+		activity.runOnUiThread(() -> {
+
+			Date start = startDate;
+			Date end   = DateUtil.addDays(start, 1);
+			for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
+
+				int from = hazardsSequence.indexAfter(start);
+				int to   = hazardsSequence.indexBefore(end);
+
+				if (from != -1) {
+					displayUniqueHazards(i, getUniqueHazards(hazardsSequence, from, to));
+				}
+
+				start = end;
+				end   = DateUtil.addDays(start, 1);
 			}
-			
-			start = end;
-			end   = DateUtil.addDays(start, 1);
-		}
+		});
 	}
 
 	@Override
@@ -543,11 +554,6 @@ class ForecastDisplay implements
 				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
 			}
 		}
-	}
-
-	@Override
-	public void onIconAvailable(ImageView imageView, Drawable icon) {
-		imageView.setImageDrawable(icon);
 	}
 
 	/**

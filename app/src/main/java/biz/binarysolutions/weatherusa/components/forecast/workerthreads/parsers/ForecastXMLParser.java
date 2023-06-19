@@ -1,17 +1,15 @@
 package biz.binarysolutions.weatherusa.components.forecast.workerthreads.parsers;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import android.os.Handler;
-import android.os.Message;
 import biz.binarysolutions.weatherusa.components.forecast.TimelinedData;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.listeners.ForecastXMLParserListener;
 import biz.binarysolutions.weatherusa.util.DateUtil;
@@ -34,72 +32,26 @@ public abstract class ForecastXMLParser extends Thread {
 	private boolean inApparentTemperature = false;
 	private boolean inWeatherConditions   = false;
 	
-	private String forecast;
-	private Date startDate;
+	private final String forecast;
 
 	private Vector<Date> lastTimeline;
-	private HashMap<String, Vector<Date>> timelines = new HashMap<String, Vector<Date>>();
+	private final HashMap<String, Vector<Date>> timelines = new HashMap<>();
 	
-	private Vector<String> maximumTemperatures  = new Vector<String>();
-	private Vector<String> minimumTemperatures  = new Vector<String>();
+	private final Vector<String> maximumTemperatures  = new Vector<>();
+	private final Vector<String> minimumTemperatures  = new Vector<>();
 	
-	private StringBuffer currentWeather = new StringBuffer();
-	private StringBuffer currentHazard  = new StringBuffer();
+	private final StringBuffer currentWeather = new StringBuffer();
+	private final StringBuffer currentHazard  = new StringBuffer();
 
-	private TimelinedData weather = new TimelinedData();
-	private TimelinedData hazards = new TimelinedData();	
+	private final TimelinedData weather = new TimelinedData();
+	private final TimelinedData hazards = new TimelinedData();
 
-	private TimelinedData apparentTemperatures = new TimelinedData();	
-	private TimelinedData dewPointTemperatures = new TimelinedData();
+	private final TimelinedData apparentTemperatures = new TimelinedData();
+	private final TimelinedData dewPointTemperatures = new TimelinedData();
 	
 	
-	private ForecastXMLParserListener listener;
+	private final ForecastXMLParserListener listener;
 
-	/**
-	 * 
-	 */
-	private Handler handler = new Handler() {
-		
-		@Override
-		public void handleMessage(Message message) {
-			
-			switch (message.what) {
-			
-			case MessageCodes.START_TIME:
-				listener.onStartDateAvailable(startDate);
-				break;
-				
-			case MessageCodes.MAXIMUM_TEMPERATURES:
-				listener.onMaximumTemperaturesAvailable(maximumTemperatures);
-				break;
-				
-				
-			case MessageCodes.MINIMUM_TEMPERATURES:
-				listener.onMinimumTemperaturesAvailable(minimumTemperatures);
-				break;
-				
-			case MessageCodes.WEATHER:
-				listener.onWeatherAvailable(weather);
-				break;
-				
-			case MessageCodes.HAZARDS:
-				listener.onHazardsAvailable(hazards);
-				break;
-				
-			case MessageCodes.APPARENT_TEMPERATURES:
-				listener.onApparentTemperaturesAvailable(apparentTemperatures);
-				break;
-				
-			case MessageCodes.DEWPOINT_TEMPERATURES:
-				listener.onDewpointTemperaturesAvailable(dewPointTemperatures);
-				break;
-
-			default:
-				break;
-			}
-		}
-	};
-	
 	/**
 	 * 
 	 */
@@ -118,8 +70,8 @@ public abstract class ForecastXMLParser extends Thread {
 	private void dispatchStartDate(String timestamp) {
 		
 		try {
-			startDate = DateUtil.parse(timestamp, TIMESTAMP_DATE);
-			handler.sendEmptyMessage(MessageCodes.START_TIME);
+			Date startDate = DateUtil.parse(timestamp, TIMESTAMP_DATE);
+			listener.onStartDateAvailable(startDate);
 		} catch (ParseException e) {
 			// TODO inform user about invalid date format?
 		}
@@ -129,43 +81,43 @@ public abstract class ForecastXMLParser extends Thread {
 	 * 
 	 */
 	private void dispatchMaximumTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.MAXIMUM_TEMPERATURES);
+		listener.onMaximumTemperaturesAvailable(maximumTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchMinimumTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.MINIMUM_TEMPERATURES);
+		listener.onMinimumTemperaturesAvailable(minimumTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchDewPointTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.DEWPOINT_TEMPERATURES);
+		listener.onDewpointTemperaturesAvailable(dewPointTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchApparentTemperatures() {
-		handler.sendEmptyMessage(MessageCodes.APPARENT_TEMPERATURES);
+		listener.onApparentTemperaturesAvailable(apparentTemperatures);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchWeather() {
-		handler.sendEmptyMessage(MessageCodes.WEATHER);
+		listener.onWeatherAvailable(weather);
 	}
 	
 	/**
 	 * 
 	 */
 	private void dispatchHazards() {
-		handler.sendEmptyMessage(MessageCodes.HAZARDS);
-	}	
+		listener.onHazardsAvailable(hazards);
+	}
 	
 	/**
 	 * 
