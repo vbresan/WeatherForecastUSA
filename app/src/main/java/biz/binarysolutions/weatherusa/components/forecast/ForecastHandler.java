@@ -152,8 +152,6 @@ public class ForecastHandler {
 		new ForecastUpdater(location) {
 			@Override
 			protected void onResponseReceived(String response) {
-				//TODO: once got rid of handler in ForecastXMLParser
-				//	run it on it's native thread
 				activity.runOnUiThread(() -> onForecastAvailable(response));
 			}
 		}.start();
