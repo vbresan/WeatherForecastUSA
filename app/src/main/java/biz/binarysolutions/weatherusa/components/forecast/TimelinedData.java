@@ -9,9 +9,9 @@ import java.util.Vector;
  */
 public class TimelinedData {
 
-	private Vector<Date>   timeline;
-	private Vector<String> data  = new Vector<String>();
-	private Vector<String> icons = new Vector<String>();
+	private Vector<Date> timeline;
+	private final Vector<String> data  = new Vector<>();
+	private final Vector<String> icons = new Vector<>();
 
 	/**
 	 * 
@@ -38,8 +38,8 @@ public class TimelinedData {
 	}
 
 	/**
-	 * 
-	 * @param end
+	 *
+	 * @param date
 	 * @return
 	 */
 	public int indexBefore(Date date) {
