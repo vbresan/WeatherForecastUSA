@@ -86,8 +86,8 @@ public class ForecastJSONParser extends Thread {
 	};
 
 	/**
-	 * 
-	 * @param timestamp
+	 *
+	 * @param date
 	 */
 	private void dispatchStartDate(String date) {
 		
