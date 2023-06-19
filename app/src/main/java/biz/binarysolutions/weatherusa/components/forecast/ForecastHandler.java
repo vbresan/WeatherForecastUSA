@@ -66,7 +66,56 @@ public class ForecastHandler {
 
 		display.clear();
 
-		new ForecastXMLParser(forecast, display) {
+		new ForecastXMLParser(forecast) {
+			@Override
+			public void onStartDateAvailable(Date date) {
+				activity.runOnUiThread(() ->
+					display.onStartDateAvailable(date)
+				);
+			}
+
+			@Override
+			protected void onMaximumTemperaturesAvailable(Vector<String> temperatures) {
+				activity.runOnUiThread(() ->
+					display.onMaximumTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			protected void onMinimumTemperaturesAvailable(Vector<String> temperatures) {
+				activity.runOnUiThread(() ->
+					display.onMinimumTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			protected void onDewpointTemperaturesAvailable(TimelinedData temperatures) {
+				activity.runOnUiThread(() ->
+					display.onDewpointTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			protected void onApparentTemperaturesAvailable(TimelinedData temperatures) {
+				activity.runOnUiThread(() ->
+					display.onApparentTemperaturesAvailable(temperatures)
+				);
+			}
+
+			@Override
+			protected void onWeatherAvailable(TimelinedData weather) {
+				activity.runOnUiThread(() ->
+					display.onWeatherAvailable(weather)
+				);
+			}
+
+			@Override
+			protected void onHazardsAvailable(TimelinedData hazards) {
+				activity.runOnUiThread(() ->
+					display.onHazardsAvailable(hazards)
+				);
+			}
+
 			@Override
 			protected void onDone() {
 				activity.runOnUiThread(() ->

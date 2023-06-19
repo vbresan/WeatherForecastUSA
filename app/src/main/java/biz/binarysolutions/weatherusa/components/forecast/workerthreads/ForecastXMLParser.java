@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
-import biz.binarysolutions.weatherusa.components.forecast.ForecastDisplay;
 import biz.binarysolutions.weatherusa.components.forecast.TimelinedData;
 import biz.binarysolutions.weatherusa.util.DateUtil;
 import biz.binarysolutions.weatherusa.util.StringUtil;
@@ -49,9 +48,6 @@ public abstract class ForecastXMLParser extends Thread {
 	private final TimelinedData apparentTemperatures = new TimelinedData();
 	private final TimelinedData dewPointTemperatures = new TimelinedData();
 	
-	
-	private final ForecastDisplay listener;
-
 	/**
 	 * 
 	 */
@@ -63,62 +59,6 @@ public abstract class ForecastXMLParser extends Thread {
 		inApparentTemperature = false;
 	}
 
-	/**
-	 * 
-	 * @param timestamp
-	 */
-	private void dispatchStartDate(String timestamp) {
-		
-		try {
-			Date startDate = DateUtil.parse(timestamp, TIMESTAMP_DATE);
-			listener.onStartDateAvailable(startDate);
-		} catch (ParseException e) {
-			// TODO inform user about invalid date format?
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchMaximumTemperatures() {
-		listener.onMaximumTemperaturesAvailable(maximumTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchMinimumTemperatures() {
-		listener.onMinimumTemperaturesAvailable(minimumTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchDewPointTemperatures() {
-		listener.onDewpointTemperaturesAvailable(dewPointTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchApparentTemperatures() {
-		listener.onApparentTemperaturesAvailable(apparentTemperatures);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchWeather() {
-		listener.onWeatherAvailable(weather);
-	}
-	
-	/**
-	 * 
-	 */
-	private void dispatchHazards() {
-		listener.onHazardsAvailable(hazards);
-	}
-	
 	/**
 	 * 
 	 * @param parser
@@ -217,20 +157,25 @@ public abstract class ForecastXMLParser extends Thread {
 		
 		String tagName = parser.getName();
 		if (tagName.equals("conditions-icon")) {
-			dispatchWeather();
+			onWeatherAvailable(weather);
 		} else if (tagName.equals("hazard-conditions")) {
 			
 			hazards.addData(currentHazard.toString().trim());
 			currentHazard.setLength(0);
 			
 		} else if (tagName.equals("hazards")) {
-			dispatchHazards();
+			onHazardsAvailable(hazards);
 		}  else if (tagName.equals("icon-link")) {
 			weather.addIcon(currentText);
 		} else if (tagName.equals("start-valid-time")) {
 			
 			if (!isStartTimeDispached) {
-				dispatchStartDate(currentText);
+				try {
+					Date startDate = DateUtil.parse(currentText, TIMESTAMP_DATE);
+					onStartDateAvailable(startDate);
+				} catch (ParseException e) {
+					// do nothing
+				}
 				isStartTimeDispached = true;
 			}
 			
@@ -256,13 +201,13 @@ public abstract class ForecastXMLParser extends Thread {
 		} else if (tagName.equals("temperature")) {
 			
 			if (inMaximumTemperature) {
-				dispatchMaximumTemperatures();
+				onMaximumTemperaturesAvailable(maximumTemperatures);
 			} else if (inMinimumTemperature) {
-				dispatchMinimumTemperatures();
+				onMinimumTemperaturesAvailable(minimumTemperatures);
 			} else if (inDewPointTemperature) {
-				dispatchDewPointTemperatures();
+				onDewpointTemperaturesAvailable(dewPointTemperatures);
 			} else if (inApparentTemperature) {
-				dispatchApparentTemperatures();
+				onApparentTemperaturesAvailable(apparentTemperatures);
 			}
 			
 			resetTagFlags();
@@ -304,19 +249,21 @@ public abstract class ForecastXMLParser extends Thread {
 		}		
 	}
 
-	/**
-	 *
-	 */
+	protected abstract void onStartDateAvailable(Date date);
+	protected abstract void onMaximumTemperaturesAvailable(Vector<String> temperatures);
+	protected abstract void onMinimumTemperaturesAvailable(Vector<String> temperatures);
+	protected abstract void onDewpointTemperaturesAvailable(TimelinedData temperatures);
+	protected abstract void onApparentTemperaturesAvailable(TimelinedData temperatures);
+	protected abstract void onWeatherAvailable(TimelinedData weather);
+	protected abstract void onHazardsAvailable(TimelinedData hazards);
 	protected abstract void onDone();
 
 	/**
 	 *
 	 * @param forecast
-	 * @param display
 	 */
-	public ForecastXMLParser(String forecast, ForecastDisplay display) {
+	public ForecastXMLParser(String forecast) {
 		this.forecast = forecast;
-		this.listener = display;
 	}
 
 	/**

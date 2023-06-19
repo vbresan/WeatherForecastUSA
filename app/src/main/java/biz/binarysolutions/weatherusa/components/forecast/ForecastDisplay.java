@@ -30,7 +30,7 @@ import biz.binarysolutions.weatherusa.util.DateUtil;
  * 
  *
  */
-public class ForecastDisplay {
+class ForecastDisplay {
 	
 	private final Activity activity;
 	
@@ -418,12 +418,10 @@ public class ForecastDisplay {
 	 */
 	public void onStartDateAvailable(Date startDate) {
 
-		activity.runOnUiThread(() -> {
-			this.startDate = startDate;
-			Date endDate = DateUtil.addDays(startDate, DateUtil.DAYS_IN_WEEK - 1);
-			displayForecastRange(startDate, endDate);
-			displayWeatherBoxTitles(startDate);
-		});
+		this.startDate = startDate;
+		Date endDate = DateUtil.addDays(startDate, DateUtil.DAYS_IN_WEEK - 1);
+		displayForecastRange(startDate, endDate);
+		displayWeatherBoxTitles(startDate);
 	}
 
 	/**
@@ -431,9 +429,7 @@ public class ForecastDisplay {
 	 * @param temperatures
 	 */
 	public void onMaximumTemperaturesAvailable(Vector<String> temperatures) {
-		activity.runOnUiThread(
-			() -> onTemperaturesAvailable(temperatures, high, highValue)
-		);
+		onTemperaturesAvailable(temperatures, high, highValue);
 	}
 
 	/**
@@ -441,9 +437,7 @@ public class ForecastDisplay {
 	 * @param temperatures
 	 */
 	public void onMinimumTemperaturesAvailable(Vector<String> temperatures) {
-		activity.runOnUiThread(
-			() -> onTemperaturesAvailable(temperatures, low, lowValue)
-		);
+		onTemperaturesAvailable(temperatures, low, lowValue);
 	}
 
 	/**
@@ -451,9 +445,7 @@ public class ForecastDisplay {
 	 * @param temperatures
 	 */
 	public void onApparentTemperaturesAvailable(TimelinedData temperatures) {
-		activity.runOnUiThread(
-			() -> onTemperaturesAvailable(temperatures, apparent, apparentValue)
-		);
+		onTemperaturesAvailable(temperatures, apparent, apparentValue);
 	}
 
 	/**
@@ -461,9 +453,7 @@ public class ForecastDisplay {
 	 * @param temperatures
 	 */
 	public void onDewpointTemperaturesAvailable(TimelinedData temperatures) {
-		activity.runOnUiThread(
-			() -> onTemperaturesAvailable(temperatures, dew, dewValue)
-		);
+		onTemperaturesAvailable(temperatures, dew, dewValue);
 	}
 
 	/**
@@ -472,30 +462,27 @@ public class ForecastDisplay {
 	 */
 	public void onWeatherAvailable(TimelinedData weatherSequence) {
 
-		activity.runOnUiThread(() -> {
+		Date midDay = DateUtil.addHours(startDate, 12);
+		Date now    = new Date();
+		Date date   = now.after(midDay) ? now : midDay;
 
-			Date midDay = DateUtil.addHours(startDate, 12);
-			Date now    = new Date();
-			Date date   = now.after(midDay) ? now : midDay;
+		for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
 
-			for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
+			int index = weatherSequence.indexAfter(date);
+			if (index >= 0) {
 
-				int index = weatherSequence.indexAfter(date);
-				if (index >= 0) {
+				String event = weatherSequence.dataAt(index);
+				weather[i].setText(formatWeather(event));
 
-					String event = weatherSequence.dataAt(index);
-					weather[i].setText(formatWeather(event));
+				String url = weatherSequence.iconAt(index);
+				iconURL[i] = url;
 
-					String url = weatherSequence.iconAt(index);
-					iconURL[i] = url;
-
-					GlideUrl glideUrl = getGlideUrl(iconURL[i]);
-					Glide.with(icon[i]).load(glideUrl).into(icon[i]);
-				}
-
-				date = DateUtil.addDays(midDay, i + 1);
+				GlideUrl glideUrl = getGlideUrl(iconURL[i]);
+				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
 			}
-		});
+
+			date = DateUtil.addDays(midDay, i + 1);
+		}
 	}
 
 	/**
@@ -504,23 +491,20 @@ public class ForecastDisplay {
 	 */
 	public void onHazardsAvailable(TimelinedData hazardsSequence) {
 
-		activity.runOnUiThread(() -> {
+		Date start = startDate;
+		Date end   = DateUtil.addDays(start, 1);
+		for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
 
-			Date start = startDate;
-			Date end   = DateUtil.addDays(start, 1);
-			for (int i = 0; i < DateUtil.DAYS_IN_WEEK; i++) {
+			int from = hazardsSequence.indexAfter(start);
+			int to   = hazardsSequence.indexBefore(end);
 
-				int from = hazardsSequence.indexAfter(start);
-				int to   = hazardsSequence.indexBefore(end);
-
-				if (from != -1) {
-					displayUniqueHazards(i, getUniqueHazards(hazardsSequence, from, to));
-				}
-
-				start = end;
-				end   = DateUtil.addDays(start, 1);
+			if (from != -1) {
+				displayUniqueHazards(i, getUniqueHazards(hazardsSequence, from, to));
 			}
-		});
+
+			start = end;
+			end   = DateUtil.addDays(start, 1);
+		}
 	}
 
 	/**
@@ -528,9 +512,7 @@ public class ForecastDisplay {
 	 * @param temperatures
 	 */
 	public void onApparentTemperaturesAvailable(Vector<String> temperatures) {
-		activity.runOnUiThread(
-			() -> onTemperaturesAvailable(temperatures, apparent, apparentValue)
-		);
+		onTemperaturesAvailable(temperatures, apparent, apparentValue);
 	}
 
 	/**
@@ -538,9 +520,7 @@ public class ForecastDisplay {
 	 * @param temperatures
 	 */
 	public void onDewpointTemperaturesAvailable(Vector<String> temperatures) {
-		activity.runOnUiThread(
-			() -> onTemperaturesAvailable(temperatures, dew, dewValue)
-		);
+		onTemperaturesAvailable(temperatures, dew, dewValue);
 	}
 
 	/**
@@ -549,16 +529,13 @@ public class ForecastDisplay {
 	 */
 	public void onWeatherAvailable(Vector<String> weather) {
 
-		activity.runOnUiThread(() -> {
+		for (int i = 0, length = weather.size(); i < length; i++) {
 
-			for (int i = 0, length = weather.size(); i < length; i++) {
-
-				String value = weather.elementAt(i);
-				if (value.length() > 0) {
-					this.weather[i].setText(value);
-				}
+			String value = weather.elementAt(i);
+			if (value.length() > 0) {
+				this.weather[i].setText(value);
 			}
-		});
+		}
 	}
 
 	/**
@@ -567,17 +544,14 @@ public class ForecastDisplay {
 	 */
 	public void onHazardsAvailable(Vector<String> hazard) {
 
-		activity.runOnUiThread(() -> {
+		for (int i = 0, length = hazard.size(); i < length; i++) {
 
-			for (int i = 0, length = hazard.size(); i < length; i++) {
-
-				String value = hazard.elementAt(i);
-				if (value.length() > 0) {
-					this.hazard[i].setText(value);
-					weatherBox[i].setBackgroundResource(R.drawable.weather_box_hazard);
-				}
+			String value = hazard.elementAt(i);
+			if (value.length() > 0) {
+				this.hazard[i].setText(value);
+				weatherBox[i].setBackgroundResource(R.drawable.weather_box_hazard);
 			}
-		});
+		}
 	}
 
 	/**
@@ -586,19 +560,16 @@ public class ForecastDisplay {
 	 */
 	public void onIconsAvailable(Vector<String> icons) {
 
-		activity.runOnUiThread(() -> {
+		for (int i = 0, length = icons.size(); i < length; i++) {
 
-			for (int i = 0, length = icons.size(); i < length; i++) {
+			String url = icons.elementAt(i);
+			if (url.length() > 0) {
 
-				String url = icons.elementAt(i);
-				if (url.length() > 0) {
-
-					iconURL[i] = url;
-					GlideUrl glideUrl = getGlideUrl(iconURL[i]);
-					Glide.with(icon[i]).load(glideUrl).into(icon[i]);
-				}
+				iconURL[i] = url;
+				GlideUrl glideUrl = getGlideUrl(iconURL[i]);
+				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
 			}
-		});
+		}
 	}
 
 	/**
