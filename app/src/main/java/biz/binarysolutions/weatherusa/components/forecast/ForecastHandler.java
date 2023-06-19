@@ -1,6 +1,5 @@
 package biz.binarysolutions.weatherusa.components.forecast;
 
-import android.app.Activity;
 import android.content.ContextWrapper;
 import android.location.Location;
 
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Vector;
 
+import biz.binarysolutions.weatherusa.MainActivity;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastJSONParser;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
 import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastXMLParser;
@@ -24,9 +24,8 @@ public class ForecastHandler {
 	
 	private static final String FILE_NAME = "latest.json";
 
-	private final Activity                activity;
-	private final ForecastHandlerListener listener;
-	private final ForecastDisplay         display;
+	private final MainActivity    activity;
+	private final ForecastDisplay display;
 	
 	/**
 	 *
@@ -60,7 +59,7 @@ public class ForecastHandler {
 	private void onForecastAvailable(String forecast) {
 
 		if (forecast == null || !forecast.startsWith("<?xml")) {
-			listener.onForecastUnavailable();
+			activity.onForecastUnavailable();
 			return;
 		}
 
@@ -124,22 +123,14 @@ public class ForecastHandler {
 			}
 		}.start();
 
-		listener.onForecastAvailable();
+		activity.onForecastAvailable();
 	}
 
 	/**
-	 * 
-	 * @param listener
+	 *
 	 */
-	public ForecastHandler
-		(	
-			Activity activity,
-			ForecastHandlerListener listener
-		) {
-		
+	public ForecastHandler(MainActivity activity) {
 		this.activity = activity;
-		this.listener = listener;
-		
 		this.display = new ForecastDisplay(activity);
 	}
 

@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import biz.binarysolutions.weatherusa.components.forecast.ForecastHandler;
-import biz.binarysolutions.weatherusa.components.forecast.ForecastHandlerListener;
 import biz.binarysolutions.weatherusa.components.location.LocationHandler;
 import biz.binarysolutions.weatherusa.components.location.LocationHandlerListener;
 import biz.binarysolutions.weatherusa.components.preferences.Preferences;
@@ -35,9 +34,7 @@ import biz.binarysolutions.weatherusa.util.location.LocationFormatter;
  */
 public class MainActivity 
 	extends Activity
-	implements 
-		LocationHandlerListener, 
-		ForecastHandlerListener {
+	implements LocationHandlerListener {
 	
 	private static final int ZIP_LENGTH = 5;
 	
@@ -50,12 +47,14 @@ public class MainActivity
 	 */
 	private void updateLocationView(Location location) {
 	
-		if (location != null) {
-			TextView view = (TextView) findViewById(R.id.TextViewLocation);
-			view.setText(LocationFormatter.format(location));
-			
-			setForecastButtonEnabled(true);
+		if (location == null) {
+			return;
 		}
+
+		TextView view = (TextView) findViewById(R.id.TextViewLocation);
+		view.setText(LocationFormatter.format(location));
+
+		setForecastButtonEnabled(true);
 	}
 	
 	/**
@@ -63,12 +62,14 @@ public class MainActivity
 	 * @param date
 	 */
 	private void updateForecastRequestView(Date date) {
-		
-		if (date != null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			TextView view = (TextView) findViewById(R.id.TextViewForecastRequest);
-			view.setText(sdf.format(date));
+
+		if (date == null) {
+			return;
 		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		TextView view = (TextView) findViewById(R.id.TextViewForecastRequest);
+		view.setText(sdf.format(date));
 	}
 
 	/**
@@ -77,11 +78,9 @@ public class MainActivity
 	private void displayLastKnownLocation() {
 		updateLocationView(locationHandler.getLastKnownLocation());
 	}
-	
 
-	
 	/**
-	 * TODO: save it in preferences?
+	 *
 	 */
 	private void displayLastKnownForecast() {
 		
@@ -153,8 +152,7 @@ public class MainActivity
 					zipCodeEntry();
 				}
 		};		
-		
-		
+
 		new AlertDialog.Builder(this)
 			.setMessage(R.string.LocationChoice)
 			.setPositiveButton(R.string.EnableGPS, goToSettingsListener)
@@ -166,12 +164,18 @@ public class MainActivity
 	 * 
 	 */
 	private void refreshLocation() {
-		
+
+		//TODO: fix this
+		//TODO: on location change refresh forecast
+		determineLocationDialog();
+
+		/*
 		if (locationHandler.hasProvider()) {
 			locationHandler.requestLocationUpdate();
 		} else {
 			determineLocationDialog();
 		}
+		*/
 	}
 	
 	/**
@@ -216,16 +220,16 @@ public class MainActivity
 	private void setLocationHandler() {
 		
 		locationHandler = new LocationHandler(
-				(LocationManager) getSystemService(Context.LOCATION_SERVICE), 
-				this
-			);
+			(LocationManager) getSystemService(Context.LOCATION_SERVICE),
+			this
+		);
 	}
 	
 	/**
 	 * 
 	 */
 	private void setForecastHandler() {
-		forecastHandler = new ForecastHandler(this, this);
+		forecastHandler = new ForecastHandler(this);
 	}
 
 	/**
@@ -279,13 +283,17 @@ public class MainActivity
 		setLocationButtonEnabled(true);
 	}
 
-	@Override
+	/**
+	 *
+	 */
 	public void onForecastAvailable() {
 		updateForecastRequestView(new Date());
 		setForecastButtonEnabled(true);
 	}
-	
-	@Override
+
+	/**
+	 *
+	 */
 	public void onForecastUnavailable() {
 		showDialog(DialogCode.FORECAST_UNAVAILABLE);
 		setForecastButtonEnabled(true);
