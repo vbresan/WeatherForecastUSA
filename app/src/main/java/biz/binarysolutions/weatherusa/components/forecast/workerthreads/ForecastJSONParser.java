@@ -78,6 +78,15 @@ public abstract class ForecastJSONParser extends Thread {
 		return vector;
 	}
 
+	protected abstract void onStartDateAvailable(Date date);
+	protected abstract void onMaximumTemperaturesAvailable(Vector<String> temperatures);
+	protected abstract void onMinimumTemperaturesAvailable(Vector<String> temperatures);
+	protected abstract void onApparentTemperaturesAvailable(Vector<String> temperatures);
+	protected abstract void onDewpointTemperaturesAvailable(Vector<String> temperatures);
+	protected abstract void onIconsAvailable(Vector<String> icons);
+	protected abstract void onWeatherAvailable(Vector<String> weather);
+	protected abstract void onHazardsAvailable(Vector<String> hazards);
+
 	/**
 	 *
 	 * @param fileInputStream
@@ -86,15 +95,6 @@ public abstract class ForecastJSONParser extends Thread {
 		this.fileInputStream = fileInputStream;
 	}
 
-	public abstract void onStartDateAvailable(Date date);
-	public abstract void onMaximumTemperaturesAvailable(Vector<String> temperatures);
-	public abstract void onMinimumTemperaturesAvailable(Vector<String> temperatures);
-	public abstract void onApparentTemperaturesAvailable(Vector<String> temperatures);
-	public abstract void onDewpointTemperaturesAvailable(Vector<String> temperatures);
-	public abstract void onIconsAvailable(Vector<String> icons);
-	public abstract void onWeatherAvailable(Vector<String> weather);
-	public abstract void onHazardsAvailable(Vector<String> hazards);
-	
 	/**
 	 * 
 	 */
