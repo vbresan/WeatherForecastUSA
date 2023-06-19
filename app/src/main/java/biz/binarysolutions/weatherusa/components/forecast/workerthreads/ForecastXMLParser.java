@@ -315,8 +315,6 @@ public abstract class ForecastXMLParser extends Thread {
 	 * @param display
 	 */
 	public ForecastXMLParser(String forecast, ForecastDisplay display) {
-		super();
-		
 		this.forecast = forecast;
 		this.listener = display;
 	}

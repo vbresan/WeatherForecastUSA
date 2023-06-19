@@ -139,7 +139,6 @@ public abstract class ForecastUpdater extends Thread {
 	 * @param location
 	 */
 	public ForecastUpdater(Location location) {
-		super();
 		this.location = location;
 	}
 

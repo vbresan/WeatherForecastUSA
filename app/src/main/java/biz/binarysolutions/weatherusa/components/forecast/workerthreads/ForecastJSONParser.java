@@ -114,8 +114,6 @@ public class ForecastJSONParser extends Thread {
 	 * @param display
 	 */
 	public ForecastJSONParser(String forecast, ForecastDisplay display) {
-		super();
-		
 		this.forecast = forecast;
 		this.display  = display;
 	}
