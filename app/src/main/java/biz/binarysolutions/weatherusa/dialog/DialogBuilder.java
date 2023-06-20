@@ -41,29 +41,6 @@ public class DialogBuilder {
 			.create();
 	}
 
-	/**
-	 *
-	 * @param context
-	 * @return
-	 */
-	private static Dialog getOnForecastUnavailableDialog(final Context context) {
-
-		OnClickListener listener = new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				if (context instanceof MainActivity) {
-					((MainActivity) context).zipCodeEntry();
-				}
-			}
-		};
-		return new AlertDialog.Builder(context)
-			.setIcon(android.R.drawable.ic_dialog_alert)
-			.setTitle(R.string.Error)
-			.setMessage(R.string.ForecastUnavailable)
-			.setPositiveButton(android.R.string.ok, listener)
-			.create();
-	}
-
 	/*
 
 	 */
@@ -76,10 +53,6 @@ public class DialogBuilder {
 			dialog = getWirelessControlsDialog(context);
 			break;
 			
-		case DialogCode.FORECAST_UNAVAILABLE:
-			dialog = getOnForecastUnavailableDialog(context);
-			break;
-	
 		default:
 			dialog = null;
 			break;		

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -159,6 +160,19 @@ public class MainActivity
 			.setNegativeButton(R.string.EnterZIPCode, enterZIPCodeListener)
 			.show();			
 	}
+
+	/**
+	 *
+	 */
+	private void showDialogForecastUnavailable() {
+
+		new AlertDialog.Builder(this)
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setTitle(R.string.ErrorGettingForecast)
+			.setMessage(R.string.ForecastUnavailable)
+			.setPositiveButton(android.R.string.ok, null)
+			.show();
+	}
 	
 	/**
 	 * 
@@ -184,8 +198,10 @@ public class MainActivity
 	 */
 	private void setLocationButtonEnabled(boolean enabled) {
 		
-		Button button = (Button) findViewById(R.id.ButtonRefreshLocation);
-		button.setEnabled(enabled);		
+		Button button = findViewById(R.id.ButtonRefreshLocation);
+		if (button != null) {
+			button.setEnabled(enabled);
+		}
 	}
 	
 	/**
@@ -194,9 +210,23 @@ public class MainActivity
 	 */
 	private void setForecastButtonEnabled(boolean enabled) {
 		
-		Button button = (Button) findViewById(R.id.ButtonRefreshForecast);
-		button.setEnabled(enabled);		
-	}	
+		Button button = findViewById(R.id.ButtonRefreshForecast);
+		if (button != null) {
+			button.setEnabled(enabled);
+		}
+	}
+
+	/**
+	 *
+	 * @param visible
+	 */
+	private void setAlertVisible(boolean visible) {
+
+		ImageView imageView = findViewById(R.id.imageViewAlert);
+		if (imageView != null) {
+			imageView.setVisibility(visible? View.VISIBLE : View.INVISIBLE);
+		}
+	}
 
 	/**
 	 * 
@@ -211,6 +241,13 @@ public class MainActivity
 		button = findViewById(R.id.ButtonRefreshLocation);
 		if (button != null) {
 			button.setOnClickListener(v -> refreshLocation());
+		}
+
+		ImageView imageView = findViewById(R.id.imageViewAlert);
+		if (imageView != null) {
+			imageView.setOnClickListener(v ->
+				showDialogForecastUnavailable()
+			);
 		}
 	}
 	
@@ -248,8 +285,8 @@ public class MainActivity
 	    setForecastHandler();
 	    
 	    Preferences.load(getPreferences(MODE_PRIVATE), locationHandler);
-	
-	    displayLastKnownLocation();
+
+		displayLastKnownLocation();
 		displayLastKnownForecast();
 		setButtonListeners();
 
@@ -287,6 +324,7 @@ public class MainActivity
 	 *
 	 */
 	public void onForecastAvailable() {
+		setAlertVisible(false);
 		updateForecastRequestView(new Date());
 		setForecastButtonEnabled(true);
 	}
@@ -295,7 +333,7 @@ public class MainActivity
 	 *
 	 */
 	public void onForecastUnavailable() {
-		showDialog(DialogCode.FORECAST_UNAVAILABLE);
+		setAlertVisible(true);
 		setForecastButtonEnabled(true);
 	}
 

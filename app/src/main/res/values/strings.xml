@@ -9,7 +9,8 @@
     <string name="EnableGPS">Enable</string>
     <string name="EnterZIPCode">Enter ZIP</string>
     <string name="ForecastReceived">Forecast received:\u0020</string>
-    <string name="ForecastUnavailable">It looks like your location is outside of US. Please enter a ZIP code instead.</string>
+    <string name="ErrorGettingForecast">Error getting forecast</string>
+    <string name="ForecastUnavailable">Either your location is outside of the US or there are connectivity issues.\n\nPlease refresh your location, enter a valid US zip code, enable internet connection, or try again later.</string>
     <string name="High">High:\u0020</string>
     <string name="LocationChoice">It looks like location sources are disabled. Would you like to enable them or enter your ZIP code?</string>
     <string name="Low">Low:\u0020</string>
@@ -17,4 +18,5 @@
     <string name="Refresh">Refresh</string>
 	<string name="Unknown">Unknown</string>
 	<string name="YourLocation">Your location:\u0020</string>
+    <string name="AlertIcon">Alert icon</string>
 </resources>

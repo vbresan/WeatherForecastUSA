@@ -9,15 +9,33 @@
     android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/textViewForecastDates"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="30sp"
-    />
+        >
+        <TextView
+            android:id="@+id/textViewForecastDates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"
+        />
+
+        <ImageView
+            android:id="@+id/imageViewAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/alert"
+            android:padding="5dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            android:contentDescription="@string/AlertIcon"
+        />
+    </RelativeLayout>
 
     <HorizontalScrollView
         android:layout_width="fill_parent"
