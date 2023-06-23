@@ -6,8 +6,8 @@
 	<string name="Continue">Continue</string>	
     <string name="Date">Date</string>
     <string name="Dew">Dew:\u0020</string>
-    <string name="EnableGPS">Enable</string>
-    <string name="EnterZIPCode">Enter ZIP</string>
+    <string name="UseGPS">Use GPS</string>
+    <string name="EnterZIPCode">Enter ZIP code</string>
     <string name="ForecastReceived">Forecast received:\u0020</string>
     <string name="ErrorGettingForecast">Error getting forecast</string>
     <string name="ForecastUnavailable">Either your location is outside of the US or there are connectivity issues.\n\nPlease refresh your location, enter a valid US zip code, enable internet connection, or try again later.</string>
@@ -15,8 +15,10 @@
     <string name="LocationChoice">It looks like location sources are disabled. Would you like to enable them or enter your ZIP code?</string>
     <string name="Low">Low:\u0020</string>
     <string name="Never">Never</string>
-    <string name="Refresh">Refresh</string>
+    <string name="Update">Update</string>
 	<string name="Unknown">Unknown</string>
 	<string name="YourLocation">Your location:\u0020</string>
     <string name="AlertIcon">Alert icon</string>
+    <string name="LocationOptions">You have two options to access location-based weather information: using GPS or entering your ZIP code. When using GPS, your location will be automatically updated each time you open the app. Alternatively, if you choose to enter your ZIP code, you will need to manually update your location whenever there is a change.</string>
+    <string name="Done">Done</string>
 </resources>

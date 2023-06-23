@@ -94,7 +94,7 @@ public class MainActivity
 	/**
 	 * 
 	 */
-	private void refreshForecast() {
+	private void updateForecast() {
 
 		setForecastButtonEnabled(false);
 		Location location = locationHandler.getLastKnownLocation();
@@ -110,8 +110,8 @@ public class MainActivity
 		dialog.setContentView(R.layout.dialog_zipcode);
 		dialog.setTitle(R.string.EnterZIPCode);
 		
-		final EditText editText = (EditText) dialog.findViewById(R.id.EditTextZIP);
-		final Button button = (Button) dialog.findViewById(R.id.ButtonZIPContinue);
+		final EditText editText = dialog.findViewById(R.id.EditTextZIP);
+		final Button button = dialog.findViewById(R.id.ButtonZIPContinue);
 		
 		button.setOnClickListener(new OnClickListener() {
 
@@ -156,7 +156,8 @@ public class MainActivity
 
 		new AlertDialog.Builder(this)
 			.setMessage(R.string.LocationChoice)
-			.setPositiveButton(R.string.EnableGPS, goToSettingsListener)
+			.setView(R.layout.dialog_zipcode)
+			.setPositiveButton(R.string.UseGPS, goToSettingsListener)
 			.setNegativeButton(R.string.EnterZIPCode, enterZIPCodeListener)
 			.show();			
 	}
@@ -177,11 +178,14 @@ public class MainActivity
 	/**
 	 * 
 	 */
-	private void refreshLocation() {
+	private void updateLocation() {
+
+		Intent intent = new Intent(this, LocationActivity.class);
+		startActivity(intent);
 
 		//TODO: fix this
 		//TODO: on location change refresh forecast
-		determineLocationDialog();
+		//determineLocationDialog();
 
 		/*
 		if (locationHandler.hasProvider()) {
@@ -198,7 +202,7 @@ public class MainActivity
 	 */
 	private void setLocationButtonEnabled(boolean enabled) {
 		
-		Button button = findViewById(R.id.ButtonRefreshLocation);
+		Button button = findViewById(R.id.buttonUpdateLocation);
 		if (button != null) {
 			button.setEnabled(enabled);
 		}
@@ -210,7 +214,7 @@ public class MainActivity
 	 */
 	private void setForecastButtonEnabled(boolean enabled) {
 		
-		Button button = findViewById(R.id.ButtonRefreshForecast);
+		Button button = findViewById(R.id.buttonUpdateForecast);
 		if (button != null) {
 			button.setEnabled(enabled);
 		}
@@ -233,14 +237,14 @@ public class MainActivity
 	 */
 	private void setButtonListeners() {
 		
-		Button button = findViewById(R.id.ButtonRefreshForecast);
+		Button button = findViewById(R.id.buttonUpdateForecast);
 		if (button != null) {
-			button.setOnClickListener(v -> refreshForecast());
+			button.setOnClickListener(v -> updateForecast());
 		}
 
-		button = findViewById(R.id.ButtonRefreshLocation);
+		button = findViewById(R.id.buttonUpdateLocation);
 		if (button != null) {
-			button.setOnClickListener(v -> refreshLocation());
+			button.setOnClickListener(v -> updateLocation());
 		}
 
 		ImageView imageView = findViewById(R.id.imageViewAlert);
@@ -279,12 +283,12 @@ public class MainActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.activity_main);
 	    
 	    setLocationHandler();
 	    setForecastHandler();
-	    
-	    Preferences.load(getPreferences(MODE_PRIVATE), locationHandler);
+
+		Preferences.load(getPreferences(MODE_PRIVATE), locationHandler);
 
 		displayLastKnownLocation();
 		displayLastKnownForecast();
@@ -292,8 +296,9 @@ public class MainActivity
 
 		AdHandler.initialize(this);
 
-		refreshLocation();
-		refreshForecast();
+		//TODO: uncomment this
+		//updateLocation();
+		updateForecast();
 	}
 
 	@Override
