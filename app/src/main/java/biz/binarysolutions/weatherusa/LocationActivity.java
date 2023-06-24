@@ -1,6 +1,7 @@
 package biz.binarysolutions.weatherusa;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
@@ -72,10 +73,12 @@ public class LocationActivity extends Activity {
 
     /**
      *
-     * @param isGPS
-     * @param zip
      */
-    private void setDefaultValues(boolean isGPS, String zip) {
+    private void setDefaultValues() {
+
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        String  zip   = Preferences.getZIP(preferences);
+        boolean isGPS = Preferences.isGPS(preferences);
 
         /* do not change the ordering, as setting incomplete ZIP makes button
             Done disabled */
@@ -99,9 +102,6 @@ public class LocationActivity extends Activity {
         setContentView(R.layout.activity_location);
 
         setListeners();
-
-        boolean isGPS = Preferences.isGPS(getPreferences(MODE_PRIVATE));
-        String  zip   = Preferences.getZIP(getPreferences(MODE_PRIVATE));
-        setDefaultValues(isGPS, zip);
+        setDefaultValues();
     }
 }
