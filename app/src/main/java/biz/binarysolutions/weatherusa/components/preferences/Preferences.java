@@ -74,7 +74,7 @@ public class Preferences {
 		SharedPreferences.Editor editor = preferences.edit();
 
 		editor.putBoolean("isGPS", isGPS);
-		editor.putString("zip", zip);
+		editor.putString("zip", zip.length() == 5? zip : "");
 
 		editor.commit();
 	}
@@ -85,7 +85,7 @@ public class Preferences {
 	 * @return
 	 */
 	public static boolean isGPS(SharedPreferences preferences) {
-		return preferences.getBoolean("isGPS", true);
+		return preferences.getBoolean("isGPS", false);
 	}
 
 	/**
