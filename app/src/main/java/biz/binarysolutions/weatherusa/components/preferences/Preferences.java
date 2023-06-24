@@ -1,12 +1,12 @@
 package biz.binarysolutions.weatherusa.components.preferences;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.location.Location;
 import biz.binarysolutions.weatherusa.components.location.LocationHandler;
 import biz.binarysolutions.weatherusa.util.location.LocationGetter;
 
 /**
- * TODO: separate thread?
  *
  */
 public class Preferences {
@@ -38,6 +38,7 @@ public class Preferences {
 	 * @param sharedPreferences 
 	 * 
 	 */
+	@SuppressLint("ApplySharedPref")
 	public static void save
 		(
 			SharedPreferences sharedPreferences, 
@@ -56,4 +57,43 @@ public class Preferences {
 		}
 	}
 
+	/**
+	 *
+	 * @param preferences
+	 * @param isGPS
+	 * @param zip
+	 */
+	@SuppressLint("ApplySharedPref")
+	public static void save
+		(
+			SharedPreferences preferences,
+			boolean 		  isGPS,
+			String 			  zip
+		) {
+
+		SharedPreferences.Editor editor = preferences.edit();
+
+		editor.putBoolean("isGPS", isGPS);
+		editor.putString("zip", zip);
+
+		editor.commit();
+	}
+
+	/**
+	 *
+	 * @param preferences
+	 * @return
+	 */
+	public static boolean isGPS(SharedPreferences preferences) {
+		return preferences.getBoolean("isGPS", true);
+	}
+
+	/**
+	 *
+	 * @param preferences
+	 * @return
+	 */
+	public static String getZIP(SharedPreferences preferences) {
+		return preferences.getString("zip", "");
+	}
 }
