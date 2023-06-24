@@ -14,8 +14,8 @@ import java.io.UnsupportedEncodingException;
 public class StringUtil {
 
 	/**
-	 * 
-	 * @param word
+	 *
+	 * @param s
 	 * @return
 	 */
 	private static String capitalizeWord(String s) {
