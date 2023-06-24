@@ -1,8 +1,10 @@
 package biz.binarysolutions.weatherusa.components.preferences;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
+
 import biz.binarysolutions.weatherusa.components.location.LocationHandler;
 import biz.binarysolutions.weatherusa.util.location.LocationGetter;
 
@@ -10,7 +12,8 @@ import biz.binarysolutions.weatherusa.util.location.LocationGetter;
  *
  */
 public class Preferences {
-	
+
+	private static final String PREFERENCES_NAME = "preferences";
 	private static Location location;
 
 	/**
@@ -58,20 +61,18 @@ public class Preferences {
 	}
 
 	/**
-	 *
-	 * @param preferences
+	 * @param context
 	 * @param isGPS
-	 * @param zip
-	 */
+     * @param zip
+     */
 	@SuppressLint("ApplySharedPref")
-	public static void save
-		(
-			SharedPreferences preferences,
-			boolean 		  isGPS,
-			String 			  zip
-		) {
+	public static void save(Context context, boolean isGPS, String zip) {
 
-		SharedPreferences.Editor editor = preferences.edit();
+		SharedPreferences.Editor editor =
+			context.getApplicationContext().getSharedPreferences(
+				PREFERENCES_NAME,
+				Context.MODE_PRIVATE
+			).edit();
 
 		editor.putBoolean("isGPS", isGPS);
 		editor.putString("zip", zip.length() == 5? zip : "");
@@ -81,19 +82,33 @@ public class Preferences {
 
 	/**
 	 *
-	 * @param preferences
+	 * @param context
 	 * @return
 	 */
-	public static boolean isGPS(SharedPreferences preferences) {
+	public static boolean isGPS(Context context) {
+
+		SharedPreferences preferences =
+			context.getApplicationContext().getSharedPreferences(
+				PREFERENCES_NAME,
+				Context.MODE_PRIVATE
+			);
+
 		return preferences.getBoolean("isGPS", false);
 	}
 
 	/**
 	 *
-	 * @param preferences
+	 * @param context
 	 * @return
 	 */
-	public static String getZIP(SharedPreferences preferences) {
+	public static String getZIP(Context context) {
+
+		SharedPreferences preferences =
+			context.getApplicationContext().getSharedPreferences(
+				PREFERENCES_NAME,
+				Context.MODE_PRIVATE
+			);
+
 		return preferences.getString("zip", "");
 	}
 }
