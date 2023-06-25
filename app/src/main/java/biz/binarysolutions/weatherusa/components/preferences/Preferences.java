@@ -1,5 +1,7 @@
 package biz.binarysolutions.weatherusa.components.preferences;
 
+import static biz.binarysolutions.weatherusa.MainActivity.ZIP_LENGTH;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -75,7 +77,7 @@ public class Preferences {
 			).edit();
 
 		editor.putBoolean("isGPS", isGPS);
-		editor.putString("zip", zip.length() == 5? zip : "");
+		editor.putString("zip", zip.length() == ZIP_LENGTH? zip : "");
 
 		editor.commit();
 	}

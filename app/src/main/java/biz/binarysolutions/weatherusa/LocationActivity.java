@@ -1,5 +1,7 @@
 package biz.binarysolutions.weatherusa;
 
+import static biz.binarysolutions.weatherusa.MainActivity.*;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,7 +36,7 @@ public class LocationActivity extends Activity {
         editText.addTextChangedListener(new DefaultTextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
-                buttonDone.setEnabled(editable.length() == 5);
+                buttonDone.setEnabled(editable.length() == ZIP_LENGTH);
             }
         });
 
@@ -55,7 +57,7 @@ public class LocationActivity extends Activity {
                 editText.setEnabled(isChecked);
                 if (isChecked) {
                     editText.requestFocus();
-                    buttonDone.setEnabled(editText.length() == 5);
+                    buttonDone.setEnabled(editText.length() == ZIP_LENGTH);
                 }
             });
         }
