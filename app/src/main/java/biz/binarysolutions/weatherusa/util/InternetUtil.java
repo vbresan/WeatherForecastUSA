@@ -49,13 +49,4 @@ public class InternetUtil {
 		
 		return response;
 	}
-
-	/**
-	 *
-	 * @param url
-	 * @return
-	 */
-	public static String getGetResponse(String url) {
-		return getGetResponse(url, null);
-	}
 }
