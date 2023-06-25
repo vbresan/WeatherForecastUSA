@@ -1,7 +1,10 @@
 package biz.binarysolutions.weatherusa.components.forecast;
 
+import static biz.binarysolutions.weatherusa.MainActivity.ZIP_LENGTH;
+
 import android.content.ContextWrapper;
 import android.location.Location;
+import android.text.TextUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -236,6 +239,24 @@ public class ForecastHandler {
 		}
 
 		new ForecastUpdater(location) {
+			@Override
+			protected void onResponseReceived(String response) {
+				activity.runOnUiThread(() -> onForecastAvailable(response));
+			}
+		}.start();
+	}
+
+	/**
+	 *
+	 * @param zip
+	 */
+	public void updateForecast(String zip) {
+
+		if (TextUtils.isEmpty(zip) || zip.length() != ZIP_LENGTH) {
+			return;
+		}
+
+		new ForecastUpdater(zip) {
 			@Override
 			protected void onResponseReceived(String response) {
 				activity.runOnUiThread(() -> onForecastAvailable(response));
