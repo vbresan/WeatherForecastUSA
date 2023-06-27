@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.preferences;
+package biz.binarysolutions.weatherusa.preferences;
 
 import static biz.binarysolutions.weatherusa.MainActivity.ZIP_LENGTH;
 
@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
 
-import androidx.annotation.NonNull;
-
-import biz.binarysolutions.weatherusa.util.location.LocationGetter;
+import biz.binarysolutions.weatherusa.util.WeatherLocation;
 
 /**
  *
@@ -17,16 +15,16 @@ public class Preferences {
 
 	private static final String PREFERENCES_NAME = "preferences";
 
-	private static Boolean  isGPS;
-	private static String   zip;
-	private static Location location;
+	private static Boolean         isGPS;
+	private static String          zip;
+	private static WeatherLocation location;
 
 	/**
 	 *
 	 * @param context
 	 * @return
 	 */
-	public static Location getLocation(Context context) {
+	public static WeatherLocation getLocation(Context context) {
 
 		if (location != null) {
 			return location;
@@ -41,7 +39,7 @@ public class Preferences {
 		double latitude  = preferences.getFloat("latitude", 0);
 		double longitude = preferences.getFloat("longitude", 0);
 		
-		location = LocationGetter.getLocation(latitude, longitude);
+		location = new WeatherLocation(latitude, longitude);
 		return location;
 	}
 
@@ -50,13 +48,13 @@ public class Preferences {
 	 * @param context
 	 * @param location
 	 */
-	public static void saveLocation
-		(
-			@NonNull Context  context,
-			@NonNull Location location
-		) {
+	public static void saveLocation(Context context, Location location) {
 
-		Preferences.location = location;
+		if (context == null || location == null) {
+			return;
+		}
+
+		Preferences.location = new WeatherLocation(location);
 
 		SharedPreferences.Editor editor =
 			context.getApplicationContext().getSharedPreferences(

@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.util.location;
+package biz.binarysolutions.weatherusa.location;
 
 import android.location.Location;
 import android.location.LocationListener;
@@ -8,7 +8,7 @@ import android.os.Bundle;
  * 
  *
  */
-public class DefaultLocationListener implements LocationListener {
+class DefaultLocationListener implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {

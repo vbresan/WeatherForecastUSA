@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.forecast;
+package biz.binarysolutions.weatherusa.forecast;
 
 import android.app.Activity;
 import android.view.View;
@@ -23,7 +23,7 @@ import java.util.LinkedHashSet;
 import java.util.Vector;
 
 import biz.binarysolutions.weatherusa.R;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
+import biz.binarysolutions.weatherusa.forecast.workerthreads.ForecastUpdater;
 import biz.binarysolutions.weatherusa.util.DateUtil;
 
 /**

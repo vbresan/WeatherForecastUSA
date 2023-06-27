@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import biz.binarysolutions.weatherusa.components.preferences.Preferences;
+import biz.binarysolutions.weatherusa.preferences.Preferences;
 import biz.binarysolutions.weatherusa.util.DefaultTextWatcher;
 
 /**
@@ -67,7 +67,7 @@ public class LocationActivity extends Activity {
             boolean isGPS = radioButtonGPS.isChecked();
             String  zip   = editText.getText().toString();
 
-            Preferences.save(LocationActivity.this, isGPS, zip);
+            Preferences.saveLocationPreferences(LocationActivity.this, isGPS, zip);
             finish();
         });
     }

@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.forecast.workerthreads;
+package biz.binarysolutions.weatherusa.forecast.workerthreads;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
-import biz.binarysolutions.weatherusa.components.forecast.TimelinedData;
+import biz.binarysolutions.weatherusa.forecast.TimelinedData;
 import biz.binarysolutions.weatherusa.util.DateUtil;
 import biz.binarysolutions.weatherusa.util.StringUtil;
 

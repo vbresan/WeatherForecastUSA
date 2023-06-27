@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "31.0.0"
 
     compileOptions {
@@ -12,9 +12,9 @@ android {
     defaultConfig {
         applicationId "biz.binarysolutions.weatherusa"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 24
-        versionName "3.0.1"
+        targetSdkVersion 32
+        versionCode 25
+        versionName "4.0"
 
         setProperty("archivesBaseName", "$applicationId-$versionName")
     }
@@ -39,5 +39,5 @@ android {
 
 dependencies {
     implementation 'com.github.bumptech.glide:glide:4.15.1'
-    gplayImplementation 'com.google.android.gms:play-services-ads:21.5.0'
+    gplayImplementation 'com.google.android.gms:play-services-ads:22.1.0'
 }

@@ -1,0 +1,7 @@
+4.0 (2023.06.27)
+
+* improving layout in landscape mode
+* removing on refresh forecast progress dialog
+* removing preferences
+* removing options menu
+* adding location activity

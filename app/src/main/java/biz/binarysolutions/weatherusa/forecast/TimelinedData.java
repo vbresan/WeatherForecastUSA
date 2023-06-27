@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.forecast;
+package biz.binarysolutions.weatherusa.forecast;
 
 import java.util.Date;
 import java.util.Vector;

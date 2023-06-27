@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.forecast.workerthreads;
+package biz.binarysolutions.weatherusa.forecast.workerthreads;
 
 import android.location.Location;
 

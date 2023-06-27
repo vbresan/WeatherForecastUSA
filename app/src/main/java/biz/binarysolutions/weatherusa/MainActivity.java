@@ -2,42 +2,30 @@ package biz.binarysolutions.weatherusa;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import biz.binarysolutions.weatherusa.components.forecast.ForecastHandler;
-import biz.binarysolutions.weatherusa.components.location.LocationHandler;
-import biz.binarysolutions.weatherusa.components.location.LocationHandlerListener;
-import biz.binarysolutions.weatherusa.components.preferences.Preferences;
-import biz.binarysolutions.weatherusa.dialog.DialogBuilder;
-import biz.binarysolutions.weatherusa.dialog.DialogCode;
-import biz.binarysolutions.weatherusa.util.location.LocationFormatter;
+import biz.binarysolutions.weatherusa.forecast.ForecastHandler;
+import biz.binarysolutions.weatherusa.location.LocationHandler;
+import biz.binarysolutions.weatherusa.preferences.Preferences;
+import biz.binarysolutions.weatherusa.util.WeatherLocation;
 
 /**
  * TODO: app is rejected from Samsung Store. Check their report
  * 	received on support email address. Fix it.
  *
  */
-public class MainActivity 
-	extends Activity
-	implements LocationHandlerListener {
+public class MainActivity extends Activity {
 	
-	private static final int ZIP_LENGTH = 5;
+	public static final int ZIP_LENGTH = 5;
 	
 	private LocationHandler locationHandler;
 	private ForecastHandler forecastHandler;
@@ -52,10 +40,22 @@ public class MainActivity
 			return;
 		}
 
-		TextView view = (TextView) findViewById(R.id.TextViewLocation);
-		view.setText(LocationFormatter.format(location));
+		TextView view = findViewById(R.id.TextViewLocation);
+		if (view != null) {
+			view.setText(new WeatherLocation(location).toString());
+		}
+	}
 
-		setForecastButtonEnabled(true);
+	/**
+	 * @param zip
+	 *
+	 */
+	private void updateLocationView(String zip) {
+
+		TextView view = findViewById(R.id.TextViewLocation);
+		if (view != null) {
+			view.setText(zip);
+		}
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class MainActivity
 		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		TextView view = (TextView) findViewById(R.id.TextViewForecastRequest);
+		TextView view = findViewById(R.id.TextViewForecastRequest);
 		view.setText(sdf.format(date));
 	}
 
@@ -77,7 +77,16 @@ public class MainActivity
 	 * 
 	 */
 	private void displayLastKnownLocation() {
-		updateLocationView(locationHandler.getLastKnownLocation());
+
+		boolean isGPS = Preferences.isGPS(this);
+		String  zip   = Preferences.getZIP(this);
+
+		if (isGPS) {
+			updateLocationView(locationHandler.getLastKnownLocation());
+		} else if (zip.length() == ZIP_LENGTH) {
+			updateLocationView(zip);
+		}
+
 	}
 
 	/**
@@ -97,69 +106,27 @@ public class MainActivity
 	private void updateForecast() {
 
 		setForecastButtonEnabled(false);
-		Location location = locationHandler.getLastKnownLocation();
-		forecastHandler.updateForecast(location);
+
+		boolean isGPS = Preferences.isGPS(this);
+		String  zip   = Preferences.getZIP(this);
+
+		if (isGPS) {
+			Location location = locationHandler.getLastKnownLocation();
+			forecastHandler.updateForecast(location);
+		} else if (zip.length() == ZIP_LENGTH) {
+			forecastHandler.updateForecast(zip);
+		}
 	}
 	
 	/**
 	 * 
 	 */
-	public void zipCodeEntry() {
-		
-		final Dialog dialog = new Dialog(this);
-		dialog.setContentView(R.layout.dialog_zipcode);
-		dialog.setTitle(R.string.EnterZIPCode);
-		
-		final EditText editText = dialog.findViewById(R.id.EditTextZIP);
-		final Button button = dialog.findViewById(R.id.ButtonZIPContinue);
-		
-		button.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				
-				String zip = editText.getText().toString();
-				if (zip.length() == ZIP_LENGTH) {
-					
-					dialog.dismiss();
-					setLocationButtonEnabled(false);
-					locationHandler.setLocationUsingZIP(zip);
-				}
-			}
-		});
-
-		dialog.show();
-	}
-
-	/**
-	 * 
-	 */
 	private void determineLocationDialog() {
-		
-		DialogInterface.OnClickListener goToSettingsListener = 
-			new DialogInterface.OnClickListener() {
-		
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					goToLocationSources();
-				}
-		};
-
-		DialogInterface.OnClickListener enterZIPCodeListener = 
-			new DialogInterface.OnClickListener() {
-		
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					zipCodeEntry();
-				}
-		};		
 
 		new AlertDialog.Builder(this)
 			.setMessage(R.string.LocationChoice)
-			.setView(R.layout.dialog_zipcode)
-			.setPositiveButton(R.string.UseGPS, goToSettingsListener)
-			.setNegativeButton(R.string.EnterZIPCode, enterZIPCodeListener)
-			.show();			
+			.setPositiveButton(android.R.string.ok, null)
+			.show();
 	}
 
 	/**
@@ -174,6 +141,25 @@ public class MainActivity
 			.setPositiveButton(android.R.string.ok, null)
 			.show();
 	}
+
+	/**
+	 *
+	 */
+	private void refreshLocation() {
+
+		boolean isGPS = Preferences.isGPS(this);
+		String  zip   = Preferences.getZIP(this);
+
+		if (isGPS) {
+			if (locationHandler.hasProvider()) {
+				locationHandler.requestLocationUpdate();
+			} else {
+				determineLocationDialog();
+			}
+		} else if (zip.length() != ZIP_LENGTH) {
+			updateLocation();
+		}
+	}
 	
 	/**
 	 * 
@@ -182,18 +168,6 @@ public class MainActivity
 
 		Intent intent = new Intent(this, LocationActivity.class);
 		startActivity(intent);
-
-		//TODO: fix this
-		//TODO: on location change refresh forecast
-		//determineLocationDialog();
-
-		/*
-		if (locationHandler.hasProvider()) {
-			locationHandler.requestLocationUpdate();
-		} else {
-			determineLocationDialog();
-		}
-		*/
 	}
 	
 	/**
@@ -254,75 +228,40 @@ public class MainActivity
 			);
 		}
 	}
-	
-	/**
-	 * 
-	 */
-	private void setLocationHandler() {
-		
-		locationHandler = new LocationHandler(
-			(LocationManager) getSystemService(Context.LOCATION_SERVICE),
-			this
-		);
-	}
-	
-	/**
-	 * 
-	 */
-	private void setForecastHandler() {
-		forecastHandler = new ForecastHandler(this);
-	}
-
-	/**
-	 *
-	 */
-	private void goToLocationSources() {
-		startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	    
-	    setLocationHandler();
-	    setForecastHandler();
 
-		Preferences.load(getPreferences(MODE_PRIVATE), locationHandler);
+		locationHandler = new LocationHandler(this);
+		forecastHandler = new ForecastHandler(this);
 
-		displayLastKnownLocation();
-		displayLastKnownForecast();
 		setButtonListeners();
 
 		AdHandler.initialize(this);
+	}
 
-		//TODO: uncomment this
-		//updateLocation();
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		displayLastKnownLocation();
+		displayLastKnownForecast();
+
+		refreshLocation();
 		updateForecast();
 	}
 
-	@Override
-	public void onPause() {
-		//TODO: this is saving location only, refactor it!
-		Preferences.save(getPreferences(MODE_PRIVATE), locationHandler);
-		super.onPause();
-	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		
-		Dialog dialog = DialogBuilder.get(id, this);
-		if (dialog == null) {
-			dialog = super.onCreateDialog(id);
-		}
-			
-		return dialog;
-	}
-
-	@Override
+	/**
+	 *
+	 * @param location
+	 */
 	public void onLocationChanged(Location location) {
+
 		updateLocationView(location);
 		setLocationButtonEnabled(true);
+		updateForecast();
 	}
 
 	/**
@@ -340,10 +279,5 @@ public class MainActivity
 	public void onForecastUnavailable() {
 		setAlertVisible(true);
 		setForecastButtonEnabled(true);
-	}
-
-	@Override
-	public void onConnectionError() {
-		showDialog(DialogCode.WIRELESS_CONTROLS);
 	}
 }

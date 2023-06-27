@@ -1,4 +1,4 @@
-package biz.binarysolutions.weatherusa.components.forecast;
+package biz.binarysolutions.weatherusa.forecast;
 
 import static biz.binarysolutions.weatherusa.MainActivity.ZIP_LENGTH;
 
@@ -15,9 +15,9 @@ import java.util.Date;
 import java.util.Vector;
 
 import biz.binarysolutions.weatherusa.MainActivity;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastJSONParser;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastUpdater;
-import biz.binarysolutions.weatherusa.components.forecast.workerthreads.ForecastXMLParser;
+import biz.binarysolutions.weatherusa.forecast.workerthreads.ForecastJSONParser;
+import biz.binarysolutions.weatherusa.forecast.workerthreads.ForecastUpdater;
+import biz.binarysolutions.weatherusa.forecast.workerthreads.ForecastXMLParser;
 
 /**
  * 

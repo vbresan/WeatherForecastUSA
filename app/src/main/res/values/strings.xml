@@ -3,7 +3,6 @@
     <string name="app_name">Weather Forecast USA</string>
 
     <string name="App">App:\u0020</string>
-	<string name="Continue">Continue</string>	
     <string name="Date">Date</string>
     <string name="Dew">Dew:\u0020</string>
     <string name="UseGPS">Use GPS</string>
@@ -12,7 +11,7 @@
     <string name="ErrorGettingForecast">Error getting forecast</string>
     <string name="ForecastUnavailable">Either your location is outside of the US or there are connectivity issues.\n\nPlease refresh your location, enter a valid US zip code, enable internet connection, or try again later.</string>
     <string name="High">High:\u0020</string>
-    <string name="LocationChoice">It looks like location sources are disabled. Would you like to enable them or enter your ZIP code?</string>
+    <string name="LocationChoice">It appears that location sources are disabled. Please enable them or use your ZIP code instead.</string>
     <string name="Low">Low:\u0020</string>
     <string name="Never">Never</string>
     <string name="Update">Update</string>
