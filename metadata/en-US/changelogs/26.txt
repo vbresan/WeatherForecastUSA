@@ -1,0 +1,6 @@
+4.0.1 (2024.06.03)
+
+* targeting Android SDK 34
+* bug fix: crash when weather icons missing
+* bug fix: replacing HttpURLConnection with HttpsURLConnection
+* updating AdMob library (Play Store distribution only)

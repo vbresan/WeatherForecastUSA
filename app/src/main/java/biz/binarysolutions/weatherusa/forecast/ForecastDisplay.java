@@ -1,6 +1,7 @@
 package biz.binarysolutions.weatherusa.forecast;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -404,6 +405,19 @@ class ForecastDisplay {
 	}
 
 	/**
+	 *
+	 */
+	private void loadIcon(int index) {
+
+		if (TextUtils.isEmpty(iconURL[index])) {
+			return;
+		}
+
+		GlideUrl glideUrl = getGlideUrl(iconURL[index]);
+		Glide.with(icon[index]).load(glideUrl).into(icon[index]);
+	}
+
+	/**
 	 * 
 	 * @param activity
 	 */
@@ -474,11 +488,8 @@ class ForecastDisplay {
 				String event = weatherSequence.dataAt(index);
 				weather[i].setText(formatWeather(event));
 
-				String url = weatherSequence.iconAt(index);
-				iconURL[i] = url;
-
-				GlideUrl glideUrl = getGlideUrl(iconURL[i]);
-				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
+				iconURL[i] = weatherSequence.iconAt(index);
+				loadIcon(i);
 			}
 
 			date = DateUtil.addDays(midDay, i + 1);
@@ -562,13 +573,8 @@ class ForecastDisplay {
 
 		for (int i = 0, length = icons.size(); i < length; i++) {
 
-			String url = icons.elementAt(i);
-			if (url.length() > 0) {
-
-				iconURL[i] = url;
-				GlideUrl glideUrl = getGlideUrl(iconURL[i]);
-				Glide.with(icon[i]).load(glideUrl).into(icon[i]);
-			}
+			iconURL[i] = icons.elementAt(i);
+			loadIcon(i);
 		}
 	}
 

@@ -3,8 +3,9 @@ package biz.binarysolutions.weatherusa.util;
 import android.text.TextUtils;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  *
@@ -22,11 +23,11 @@ public class InternetUtil {
 	 */
 	public static String getGetResponse(String url, String userAgent) {
 		
-		String response = "";
-		HttpURLConnection connection = null;
+		String             response   = "";
+		HttpsURLConnection connection = null;
 		
 		try {
-			connection = (HttpURLConnection) new URL(url).openConnection();
+			connection = (HttpsURLConnection) new URL(url).openConnection();
 			connection.setRequestMethod("GET");
 			connection.setReadTimeout(TIMEOUT);
 			connection.setConnectTimeout(TIMEOUT);
@@ -36,7 +37,7 @@ public class InternetUtil {
 			}
 
 			int responseCode = connection.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
+			if (responseCode == HttpsURLConnection.HTTP_OK) {
 				response = StringUtil.getString(connection.getInputStream());
 			}
 		} catch (IOException e) {

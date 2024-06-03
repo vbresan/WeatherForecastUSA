@@ -1,20 +1,20 @@
-apply plugin: 'com.android.application'
+apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "31.0.0"
+    namespace "biz.binarysolutions.weatherusa"
+    compileSdk 34
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     defaultConfig {
         applicationId "biz.binarysolutions.weatherusa"
         minSdkVersion 21
-        targetSdkVersion 32
-        versionCode 25
-        versionName "4.0"
+        targetSdk 34
+        versionCode 26
+        versionName "4.0.1"
 
         setProperty("archivesBaseName", "$applicationId-$versionName")
     }
@@ -22,11 +22,11 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-project.txt"
         }
     }
 
-    flavorDimensions "distribution"
+    flavorDimensions = ["distribution"]
     productFlavors {
         gplay {
             dimension "distribution"
@@ -38,6 +38,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.bumptech.glide:glide:4.15.1'
-    gplayImplementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation "com.github.bumptech.glide:glide:4.15.1"
+    gplayImplementation "com.google.android.gms:play-services-ads:23.1.0"
 }
