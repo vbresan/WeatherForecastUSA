@@ -29,7 +29,7 @@ forecast, weather, watches, warnings, advisories, US, location, GPS, ZIP, NOAA
      alt="Get it on Google Play"
      height="80">](https://play.google.com/store/apps/details?id=biz.binarysolutions.weatherusa)
 
-## Support and contributions
+## Support
 Open-source projects often struggle to be financially sustainable. You are 
 more than welcome to sponsor the project by donating via 
 [Ko-fi](https://ko-fi.com/vbresan/?utm_source=weatherusa&utm_medium=github-readme&utm_campaign=regular) 
