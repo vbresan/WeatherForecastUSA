@@ -36,8 +36,8 @@
 
     <HorizontalScrollView
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0"
+        android:layout_height="@dimen/horizontal_scroll_height"
+        android:layout_weight="@dimen/horizontal_scroll_weight"
         android:scrollbars="none"
         >
 

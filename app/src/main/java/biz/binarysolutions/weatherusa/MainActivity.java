@@ -255,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
 		displayLastKnownForecast();
 
 		refreshLocation();
-		updateForecast();
 	}
 
 	/**

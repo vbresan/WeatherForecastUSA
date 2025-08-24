@@ -4,5 +4,9 @@
     <dimen name="controlsPadding">5dp</dimen>
     <dimen name="minSize">48dp</dimen>
 
+    <item name="wrap_content" format="integer" type="dimen">-2</item>
+    <dimen name="horizontal_scroll_height">0dp</dimen>
+    <dimen name="horizontal_scroll_weight">1</dimen>
+
     <dimen name="WeatherBoxWidth">106dp</dimen>
 </resources>
