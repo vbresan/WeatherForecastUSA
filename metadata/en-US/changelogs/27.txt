@@ -1,0 +1,4 @@
+5.0 (2025.08.24)
+
+* targeting Android SDK 35
+* using Material Design 3 with dynamic colors
