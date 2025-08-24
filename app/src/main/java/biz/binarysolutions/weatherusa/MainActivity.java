@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
 		setButtonListeners();
 
-		AdHandler.initialize(this);
+		FlavorSpecific.initialize(this);
 	}
 
 	@Override

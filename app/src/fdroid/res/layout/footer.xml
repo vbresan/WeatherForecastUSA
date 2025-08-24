@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buttonSupport"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    style="?android:attr/buttonBarButtonStyle"
+    android:layout_margin="@dimen/controlsPadding"
+    android:paddingHorizontal="@dimen/minSize"
+    android:textSize="@dimen/textSizeMedium"
+    android:text="@string/SupportApp"
+    >
+</Button>

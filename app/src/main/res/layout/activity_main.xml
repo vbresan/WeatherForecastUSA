@@ -21,7 +21,6 @@
             android:gravity="center"
             android:layout_centerInParent="true"
         />
-
         <ImageView
             android:id="@+id/imageViewAlert"
             android:layout_width="wrap_content"
@@ -760,7 +759,7 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <include layout="@layout/controls"  />
-    <include layout="@layout/banner_ad" />
+    <include layout="@layout/controls" />
+    <include layout="@layout/footer" />
 
 </LinearLayout>
