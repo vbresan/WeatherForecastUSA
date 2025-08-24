@@ -5,7 +5,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="bottom"
-    android:background="@drawable/background"
     android:orientation="vertical"
     >
 
@@ -17,10 +16,9 @@
             android:id="@+id/textViewForecastDates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="30sp"
             android:layout_centerInParent="true"
         />
 
@@ -29,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/alert"
-            android:padding="5dip"
+            android:padding="@dimen/controlsPadding"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:visibility="invisible"
@@ -58,37 +56,37 @@
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle01"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle02"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle03"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle04"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle05"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle06"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
                 <TextView
                     android:id="@+id/textViewWeatherBoxTitle07"
-                    style="@style/TextViewWeatherBoxTitleStyle"
+                    style="@style/WeatherBoxTitle"
                 />
 
             </LinearLayout>
@@ -108,16 +106,16 @@
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox01"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -125,93 +123,92 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue01"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon01"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather01"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard01"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox02"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -219,93 +216,92 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue02"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon02"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather02"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard02"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox03"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -313,93 +309,92 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue03"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon03"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather03"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard03"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox04"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -407,93 +402,92 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue04"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon04"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather04"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard04"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox05"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -501,93 +495,92 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue05"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon05"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather05"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard05"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox06"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -595,93 +588,92 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue06"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon06"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather06"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard06"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearLayoutWeatherBox07"
-                        style="@style/LinearLayoutWeatherBoxStyle"
+                        style="@style/WeatherBox"
                         >
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewHigh07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/High"
                                 android:visibility="invisible"
                                 android:textStyle="bold"
@@ -689,78 +681,77 @@
 
                             <TextView
                                 android:id="@+id/textViewHighValue07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:textStyle="bold"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewLow07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Low"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewLowValue07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             android:paddingTop="5dip"
                             >
 
                             <TextView
                                 android:id="@+id/textViewApparent07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/App"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewApparentValue07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <LinearLayout
-                            style="@style/LinearLayoutWeatherBoxItemStyle"
+                            style="@style/WeatherBoxItemContainer"
                             >
 
                             <TextView
                                 android:id="@+id/textViewDew07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                                 android:text="@string/Dew"
                                 android:visibility="invisible"
                             />
 
                             <TextView
                                 android:id="@+id/textViewDewValue07"
-                                style="@style/TextViewWeatherBoxItemStyle"
+                                style="@style/WeatherBoxItem"
                             />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/imageViewWeatherIcon07"
-                            style="@style/ImageViewWeatherIconStyle"
+                            style="@style/WeatherIcon"
                             tools:ignore="ContentDescription"
                         />
 
                         <TextView
                             android:id="@+id/textViewWeather07"
-                            style="@style/TextViewWeatherBoxMessageStyle"
+                            style="@style/WeatherBoxMessage"
                         />
 
                         <TextView
                             android:id="@+id/textViewHazard07"
-                            style="@style/TextViewWeatherBoxMessageStyle"
-                            android:textColor="#FF0000"
+                            style="@style/WeatherBoxMessageHazard"
                         />
                     </LinearLayout>
 

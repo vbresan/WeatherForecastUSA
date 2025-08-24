@@ -21,6 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Vector;
 
 import biz.binarysolutions.weatherusa.R;
@@ -225,14 +226,14 @@ class ForecastDisplay {
 	 */
 	private void displayWeatherBoxTitles(Date date) {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE dd", Locale.US);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		
-		for (int i = 0; i < weatherBoxTitle.length; i++) {
-			
+
+		for (TextView view : weatherBoxTitle) {
+
 			String text = sdf.format(calendar.getTime()).toUpperCase();
-			weatherBoxTitle[i].setText(text);
+			view.setText(text);
 			calendar.add(Calendar.DATE, 1);
 		}
 	}
@@ -410,6 +411,10 @@ class ForecastDisplay {
 	private void loadIcon(int index) {
 
 		if (TextUtils.isEmpty(iconURL[index])) {
+			return;
+		}
+
+		if (activity.isDestroyed() || activity.isFinishing()) {
 			return;
 		}
 

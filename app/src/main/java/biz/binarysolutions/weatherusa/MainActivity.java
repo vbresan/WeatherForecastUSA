@@ -1,7 +1,5 @@
 package biz.binarysolutions.weatherusa;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -10,8 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.color.DynamicColors;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import biz.binarysolutions.weatherusa.forecast.ForecastHandler;
 import biz.binarysolutions.weatherusa.location.LocationHandler;
@@ -23,7 +27,7 @@ import biz.binarysolutions.weatherusa.util.WeatherLocation;
  * 	received on support email address. Fix it.
  *
  */
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 	
 	public static final int ZIP_LENGTH = 5;
 	
@@ -68,7 +72,7 @@ public class MainActivity extends Activity {
 			return;
 		}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd HH:mm", Locale.US);
 		TextView view = findViewById(R.id.TextViewForecastRequest);
 		view.setText(sdf.format(date));
 	}
@@ -123,7 +127,7 @@ public class MainActivity extends Activity {
 	 */
 	private void determineLocationDialog() {
 
-		new AlertDialog.Builder(this)
+		new MaterialAlertDialogBuilder(this, R.style.AlertDialog)
 			.setMessage(R.string.LocationChoice)
 			.setPositiveButton(android.R.string.ok, null)
 			.show();
@@ -134,8 +138,7 @@ public class MainActivity extends Activity {
 	 */
 	private void showDialogForecastUnavailable() {
 
-		new AlertDialog.Builder(this)
-			.setIcon(android.R.drawable.ic_dialog_alert)
+		new MaterialAlertDialogBuilder(this, R.style.AlertDialog)
 			.setTitle(R.string.ErrorGettingForecast)
 			.setMessage(R.string.ForecastUnavailable)
 			.setPositiveButton(android.R.string.ok, null)
@@ -232,6 +235,8 @@ public class MainActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		DynamicColors.applyToActivityIfAvailable(this);
 		setContentView(R.layout.activity_main);
 
 		locationHandler = new LocationHandler(this);

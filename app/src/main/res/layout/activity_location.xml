@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:padding="16dp"
     android:orientation="vertical"
     >
@@ -21,8 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/LocationOptions"
-            android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textColor="@android:color/black"
+            android:textAppearance="@style/TextAppearanceMedium"
         />
 
         <RadioGroup
@@ -37,9 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/UseGPS"
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:textColor="@android:color/black"
-                android:buttonTint="@android:color/black"
+                android:textAppearance="@style/TextAppearanceMedium"
             />
 
             <RadioButton
@@ -47,9 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/EnterZIPCode"
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:textColor="@android:color/black"
-                android:buttonTint="@android:color/black"
+                android:textAppearance="@style/TextAppearanceMedium"
             />
         </RadioGroup>
 
@@ -68,10 +62,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/darker_gray"
-                android:backgroundTint="@android:color/black"
-                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textAppearance="@style/TextAppearanceMedium"
                 android:autofillHints="zipCode"
                 android:hint="@string/EnterZIPCode"
                 android:enabled="false"
@@ -89,8 +80,8 @@
 
     <Button
         android:id="@+id/buttonDone"
+        style="@style/Button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/Done"
         android:enabled="false"
     />

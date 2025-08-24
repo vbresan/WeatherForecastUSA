@@ -1,38 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="TextViewWeatherBoxTitleStyle">
-        <item name="android:layout_width">@dimen/WeatherBoxWidth</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/background_day</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@drawable/TextColorWeatherBoxTitle</item>
+    <style name="TextAppearanceMedium" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
     </style>
-    <style name="TextViewWeatherBoxItemStyle">
+    <style name="ControlsName" parent="Widget.AppCompat.TextView">
+    </style>
+    <style name="ControlsVariable" parent="Widget.AppCompat.TextView">
+        <item name="android:textAppearance">@style/TextAppearanceMedium</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@drawable/TextColorWeatherBox</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">end</item>
     </style>
-    <style name="TextViewWeatherBoxMessageStyle" parent="TextViewWeatherBoxItemStyle">
+    <style name="AlertDialog" parent="@style/MaterialAlertDialog.Material3">
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogBodyText</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AlertDialogButtonText</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertDialogButtonText</item>
+    </style>
+    <style name="AlertDialogBodyText" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textAppearance">@style/TextAppearanceMedium</item>
+    </style>
+    <style name="AlertDialogButtonText" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+    </style>
+    <style name="Button" parent="Widget.Material3.Button">
+        <item name="android:textAppearance">@style/TextAppearanceMedium</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/minSize</item>
+    </style>
+    <style name="WeatherBoxTitle">
+        <item name="android:layout_width">@dimen/WeatherBoxWidth</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearanceMedium</item>
+    </style>
+    <style name="WeatherBoxItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyLarge</item>
+    </style>
+    <style name="WeatherBoxMessage" parent="WeatherBoxItem">
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="LinearLayoutWeatherBoxStyle">
+    <style name="WeatherBoxMessageHazard" parent="WeatherBoxMessage">
+        <item name="android:textColor">?attr/colorError</item>
+    </style>
+    <style name="WeatherBox">
         <item name="android:layout_width">@dimen/WeatherBoxWidth</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:background">@drawable/weather_box</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/controlsPadding</item>
     </style>
-    <style name="LinearLayoutWeatherBoxItemStyle">
+    <style name="WeatherBoxItemContainer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:orientation">horizontal</item>
     </style>
-    <style name="ImageViewWeatherIconStyle">
-        <item name="android:layout_width">57dip</item>
-        <item name="android:layout_height">60dip</item>
+    <style name="WeatherIcon">
+        <item name="android:layout_width">57dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:padding">2dip</item>
+        <item name="android:padding">2dp</item>
     </style>
 </resources>

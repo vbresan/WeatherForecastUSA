@@ -7,7 +7,7 @@
     <string name="Dew">Dew:\u0020</string>
     <string name="UseGPS">Use GPS</string>
     <string name="EnterZIPCode">Enter ZIP code</string>
-    <string name="ForecastReceived">Forecast received:\u0020</string>
+    <string name="Fetched">Fetched:</string>
     <string name="ErrorGettingForecast">Error getting forecast</string>
     <string name="ForecastUnavailable">Either your location is outside of the US or there are connectivity issues.\n\nPlease refresh your location, enter a valid US zip code, enable internet connection, or try again later.</string>
     <string name="High">High:\u0020</string>
@@ -16,7 +16,7 @@
     <string name="Never">Never</string>
     <string name="Update">Update</string>
 	<string name="Unknown">Unknown</string>
-	<string name="YourLocation">Your location:\u0020</string>
+	<string name="Location">Location:</string>
     <string name="AlertIcon">Alert icon</string>
     <string name="LocationOptions">You have two options to access location-based weather information: using GPS or entering your ZIP code. When using GPS, your location will be automatically updated each time you open the app. Alternatively, if you choose to enter your ZIP code, you will need to manually update your location whenever there is a change.</string>
     <string name="Done">Done</string>

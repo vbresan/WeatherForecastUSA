@@ -1,8 +1,7 @@
 package biz.binarysolutions.weatherusa;
 
-import static biz.binarysolutions.weatherusa.MainActivity.*;
+import static biz.binarysolutions.weatherusa.MainActivity.ZIP_LENGTH;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
@@ -10,13 +9,17 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.color.DynamicColors;
+
 import biz.binarysolutions.weatherusa.preferences.Preferences;
 import biz.binarysolutions.weatherusa.util.DefaultTextWatcher;
 
 /**
  *
  */
-public class LocationActivity extends Activity {
+public class LocationActivity extends AppCompatActivity {
 
     /**
      *
@@ -98,6 +101,8 @@ public class LocationActivity extends Activity {
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DynamicColors.applyToActivityIfAvailable(this);
         setContentView(R.layout.activity_location);
 
         setListeners();

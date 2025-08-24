@@ -1,72 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
+    android:orientation="vertical"
+    android:padding="@dimen/controlsPadding"
     >
 
-    <TableRow
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:text="@string/ForecastReceived"
-            android:textColor="#000000"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/Fetched"
+            android:textAppearance="@style/TextAppearanceMedium"
         />
 
         <TextView
             android:id="@+id/TextViewForecastRequest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ControlsVariable"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:text="@string/Never"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#000000"
         />
 
         <Button
             android:id="@+id/buttonUpdateForecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Button"
             android:text="@string/Update"
         />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:text="@string/YourLocation"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#000000"
+            android:text="@string/Location"
+            android:textAppearance="@style/TextAppearanceMedium"
         />
 
         <TextView
             android:id="@+id/TextViewLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
+            style="@style/ControlsVariable"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:text="@string/Unknown"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#000000"
-            android:gravity="end"
         />
 
         <Button
             android:id="@+id/buttonUpdateLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Button"
             android:text="@string/Update"
         />
-    </TableRow>
-</TableLayout>
+    </LinearLayout>
+</LinearLayout>
