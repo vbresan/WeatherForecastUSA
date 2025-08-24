@@ -13,6 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/app_admob_id"
+        ads:adUnitId="@string/admob_ad_id"
     />
 </LinearLayout>
