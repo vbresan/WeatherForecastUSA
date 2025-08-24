@@ -10,5 +10,4 @@
     android:paddingHorizontal="@dimen/minSize"
     android:textSize="@dimen/textSizeMedium"
     android:text="@string/SupportApp"
-    >
-</Button>
+/>
